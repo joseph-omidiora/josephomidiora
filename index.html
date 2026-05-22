@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-alt-href="/fr/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joseph Omidiora — Building the Payment Infrastructure African Transport Runs On</title>
+  <meta name="description" content="Joseph Omidiora is a data engineer and founder of Weyz Mobility and Avancier Technologies, building the payment infrastructure African transport runs on.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Joseph Omidiora">
+  <meta property="og:description" content="Building the payment infrastructure African transport runs on.">
+  <meta property="og:image" content="https://josephomidiora.com/images/og/home.png">
+  <meta property="og:url" content="https://josephomidiora.com/">
+  <meta property="og:type" content="website">
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://josephomidiora.com/">
+  <link rel="alternate" hreflang="en" href="https://josephomidiora.com/">
+  <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <!-- JSON-LD Person schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joseph Omidiora",
+    "url": "https://josephomidiora.com",
+    "jobTitle": "Founder & Data Engineer",
+    "description": "Building the payment infrastructure African transport runs on.",
+    "sameAs": [
+      "https://www.linkedin.com/in/josephomidiora",
+      "https://twitter.com/josephomidiora"
+    ],
+    "founder": [
+      { "@type": "Organization", "name": "Weyz Mobility" },
+      { "@type": "Organization", "name": "Avancier Technologies" }
+    ]
+  }
+  </script>
+</head>
+<body class="page--home">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <site-nav current-page="/" lang="en" en-path="/" fr-path="/fr/"></site-nav>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <h1 class="hero__headline" id="hero-headline">
+          I build the payment infrastructure African transport runs on.
+        </h1>
+        <p class="hero__sub">Founder. Data Engineer. Nigerian in Stockholm.</p>
+
+        <!-- Audience routing cards -->
+        <nav class="audience-cards" aria-label="Find what you're looking for">
+          <div class="audience-card">
+            <p class="audience-card__label">For Investors</p>
+            <cta-button label="Explore Weyz" href="/building.html" arrow></cta-button>
+          </div>
+          <div class="audience-card">
+            <p class="audience-card__label">For Founders</p>
+            <cta-button label="Read the Essays" href="/thinking.html" arrow></cta-button>
+          </div>
+          <div class="audience-card">
+            <p class="audience-card__label">For Press</p>
+            <cta-button label="Media Enquiry" href="/contact.html#press" arrow></cta-button>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- What I Build -->
+    <section class="section" aria-labelledby="what-i-build-heading">
+      <div class="container">
+        <h2 id="what-i-build-heading">What I Build</h2>
+        <div class="what-i-build">
+          <div>
+            <h3>Weyz Mobility</h3>
+            <p>Payment infrastructure for public transport in Africa. We're building the wallet and card-tap system that puts real transaction data on Nigeria's bus and ferry networks — starting on campus, scaling to city routes.</p>
+            <a href="/building.html#weyz" class="cta cta--secondary" style="margin-top:1.5rem">Learn more →</a>
+          </div>
+          <div>
+            <h3>Avancier Technologies</h3>
+            <p>Technical consulting for non-technical founders. We help early-stage African and diaspora builders architect the right systems before they hire their first engineering team.</p>
+            <a href="/building.html#avancier" class="cta cta--secondary" style="margin-top:1.5rem">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Thinking -->
+    <section class="section" aria-labelledby="latest-thinking-heading" style="background:var(--color-base)">
+      <div class="container">
+        <h2 id="latest-thinking-heading">Latest Thinking</h2>
+        <div class="latest-thinking__grid" id="latest-essays">
+          <!-- Populated by build script via essays-manifest.json -->
+          <!-- Fallback if JS disabled or manifest not yet generated -->
+          <p><a href="/thinking.html">Read all essays →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Thesis -->
+    <section class="pull-quote" aria-label="The thesis">
+      <div class="container">
+        <blockquote class="pull-quote__text">
+          "The bus is the bank. Every fare is a transaction. Every route is a data stream. The infrastructure that moves people is the same infrastructure that moves money — and right now, it moves neither well."
+        </blockquote>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+    </div>
+  </footer>
+
+  <!-- Web Components -->
+  <script type="module">
+    import { SiteNav } from './components/site-nav.js';
+    import { CtaButton } from './components/cta-button.js';
+    import { EssayCard } from './components/essay-card.js';
+    if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
+    if (!customElements.get('cta-button')) customElements.define('cta-button', CtaButton);
+    if (!customElements.get('essay-card')) customElements.define('essay-card', EssayCard);
+  </script>
+
+  <!-- Latest essays: load from manifest -->
+  <script type="module" defer>
+    async function loadLatestEssays() {
+      try {
+        const res = await fetch('/content/essays-manifest.json');
+        if (!res.ok) { return; }
+        const essays = await res.json();
+        const container = document.getElementById('latest-essays');
+        if (!container || essays.length === 0) { return; }
+
+        container.innerHTML = essays.slice(0, 3).map((e) => `
+          <essay-card
+            title="${e.title.replace(/"/g, '&quot;')}"
+            slug="${e.slug}"
+            date="${e.date}"
+            pillar="${e.pillar}"
+            description="${(e.description ?? '').replace(/"/g, '&quot;')}"
+          ></essay-card>
+        `).join('');
+      } catch { /* manifest not yet generated — fallback link stays */ }
+    }
+    loadLatestEssays();
+  </script>
+
+  <!-- Language toggle -->
+  <script type="module" src="js/lang.js"></script>
+</body>
+</html>

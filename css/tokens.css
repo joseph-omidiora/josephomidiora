@@ -1,0 +1,103 @@
+/* ============================================================
+   Design Tokens — josephomidiora.com
+   Single source of truth for all visual values.
+   All spacing is multiples of --space-unit (8px).
+   ============================================================ */
+
+:root {
+  /* --- Colours --- */
+  --color-primary: #0d0d0d;      /* Deep Obsidian — hero bg, nav, dark surfaces */
+  --color-warm: #e8d5b0;         /* Sahara Sand — sub-headlines, accent on dark */
+  --color-signal: #00c853;       /* Infrastructure Green — CTAs, active nav, tags */
+  --color-slate: #2d4a6b;        /* Slate Blue — secondary headings, dividers */
+  --color-base: #f5f0e8;         /* Warm White — page and card backgrounds */
+  --color-text: #2a2a2a;         /* Body copy */
+  --color-border: #e0dad0;       /* Card borders, subtle dividers */
+  --color-muted: #888888;        /* Dates, captions */
+  --color-mid: #555555;          /* Card descriptions */
+
+  /* --- Semantic colour aliases --- */
+  --color-cta-bg: var(--color-signal);
+  --color-cta-text: var(--color-primary);
+  --color-link: var(--color-signal);
+  --color-heading-display: var(--color-primary);
+  --color-heading-secondary: var(--color-slate);
+
+  /* --- Typography — Fonts --- */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* --- Typography — Scale (desktop) --- */
+  --text-hero: clamp(2.5rem, 5vw, 4.5rem);    /* H1 hero: 40–72px */
+  --text-h1: clamp(2rem, 4vw, 2.5rem);        /* H1 page: 32–40px */
+  --text-h2: clamp(1.5rem, 3vw, 2rem);        /* H2 section: 24–32px */
+  --text-h3: clamp(1.125rem, 2vw, 1.5rem);    /* H3 sub: 18–24px */
+  --text-body: 1rem;                           /* 16px */
+  --text-body-lg: 1.125rem;                   /* 18px — essay body */
+  --text-caption: 0.8125rem;                  /* 13px — dates, captions */
+  --text-tag: 0.75rem;                        /* 12px — pillar tags */
+  --text-nav: 0.875rem;                       /* 14px — navigation */
+
+  /* --- Typography — Line heights --- */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-essay: 1.8;         /* Essay body optimised for reading */
+
+  /* --- Typography — Weights --- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* --- Spacing (multiples of 8px base unit) --- */
+  --space-1: 0.5rem;    /* 8px */
+  --space-2: 1rem;      /* 16px */
+  --space-3: 1.5rem;    /* 24px */
+  --space-4: 2rem;      /* 32px */
+  --space-5: 2.5rem;    /* 40px */
+  --space-6: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-10: 5rem;     /* 80px — section vertical padding desktop */
+  --space-12: 6rem;     /* 96px */
+  --space-16: 8rem;     /* 128px */
+
+  /* --- Layout --- */
+  --max-width: 75rem;             /* 1200px — content container */
+  --essay-width: 42.5rem;        /* 680px — essay body max-width */
+  --nav-height: 4rem;            /* 64px */
+  --section-padding-desktop: var(--space-10);
+  --section-padding-mobile: var(--space-6);
+
+  /* --- Component — CTA Button --- */
+  --btn-radius: 2px;
+  --btn-padding: 0.75rem 1.75rem;   /* 12px 28px */
+  --btn-font-size: var(--text-nav);
+  --btn-font-weight: var(--weight-semibold);
+  --btn-border-width: 1.5px;
+
+  /* --- Component — Card --- */
+  --card-bg: #ffffff;
+  --card-border: 1px solid var(--color-border);
+  --card-radius: 2px;
+  --card-padding: var(--space-3);
+
+  /* --- Transitions --- */
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+
+  /* --- Focus ring --- */
+  --focus-ring: 0 0 0 3px var(--color-signal);
+}
+
+/* Honour reduced-motion preference globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

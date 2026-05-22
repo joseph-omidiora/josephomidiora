@@ -1,0 +1,168 @@
+/* ============================================================
+   Pages — josephomidiora.com
+   Page-specific layout overrides, applied after components.css.
+   ============================================================ */
+
+/* ---- Home (index.html) ---- */
+.page--home .what-i-build {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+@media (max-width: 48rem) {
+  .page--home .what-i-build {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page--home .latest-thinking__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 64rem) {
+  .page--home .latest-thinking__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .page--home .latest-thinking__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Building (/building.html) ---- */
+.page--building .companies {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+}
+
+@media (max-width: 64rem) {
+  .page--building .companies {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.page--building .company__section {
+  border-top: 2px solid var(--color-signal);
+  padding-top: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.page--building .company__section h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-signal);
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Thinking (/thinking.html) ---- */
+.page--thinking .essay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.page--thinking .essay-grid [data-pillar-card][hidden] {
+  display: none;
+}
+
+.page--thinking .empty-state {
+  display: none;
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.page--thinking .empty-state.visible {
+  display: block;
+}
+
+/* ---- About (/about.html) ---- */
+.page--about .about__layout {
+  display: grid;
+  grid-template-columns: 1fr 18rem;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (max-width: 64rem) {
+  .page--about .about__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .page--about .about__sidebar {
+    order: -1;
+  }
+}
+
+.page--about .about__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--btn-radius);
+  margin-bottom: var(--space-4);
+}
+
+.page--about .narrative-section {
+  margin-bottom: var(--space-8);
+}
+
+.page--about .narrative-section h2 {
+  font-size: var(--text-h2);
+  margin-bottom: var(--space-3);
+}
+
+.page--about .speaker-bio {
+  background: var(--color-base);
+  border: var(--card-border);
+  border-radius: var(--btn-radius);
+  padding: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.page--about .speaker-bio__label {
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-signal);
+  margin-bottom: var(--space-2);
+}
+
+/* ---- Contact (/contact.html) ---- */
+.page--contact .contact-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.page--contact .contact-section {
+  max-width: 40rem;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.page--contact .contact-section:first-child {
+  border-top: none;
+}
+
+.page--contact .contact-section__heading {
+  font-size: var(--text-h2);
+  margin-bottom: var(--space-2);
+}
+
+.page--contact .contact-section__sub {
+  color: var(--color-muted);
+  margin-bottom: var(--space-4);
+  max-width: 50ch;
+}

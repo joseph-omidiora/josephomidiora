@@ -1,0 +1,146 @@
+backend:
+  name: github
+  repo: joseph-omidiora/josephomidiora
+  branch: main
+  auth_scope: public_repo
+
+media_folder: images/content
+public_folder: /images/content
+
+collections:
+
+  # ── Essays ────────────────────────────────────────────────────────────────
+  - name: essays
+    label: Essays
+    label_singular: Essay
+    folder: content/essays
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{title}} ({{publish_date}})"
+    sortable_fields: [publish_date, title]
+    fields:
+
+      - { label: Title (EN), name: title, widget: string, required: true }
+
+      - label: Slug
+        name: slug
+        widget: string
+        required: true
+        hint: "URL-safe identifier. Immutable after first publish."
+        pattern:
+          - "^[a-z0-9-]+$"
+          - "Lowercase letters, numbers, and hyphens only"
+
+      - { label: Publish Date, name: publish_date, widget: datetime, format: YYYY-MM-DD, required: true }
+
+      - label: Status
+        name: status
+        widget: select
+        options: [{ label: Draft, value: draft }, { label: Published, value: published }]
+        default: draft
+        required: true
+
+      - label: Pillar
+        name: pillar
+        widget: select
+        required: true
+        options:
+          - Infrastructure Intelligence
+          - Founder Dispatches
+          - The Backbone Thesis
+          - Global Builder Lens
+          - Technical Craft
+
+      - label: Description (EN)
+        name: description
+        widget: string
+        required: true
+        hint: "Max 160 characters. Used in essay cards and meta description."
+        pattern:
+          - "^.{1,160}$"
+          - "Must be 160 characters or fewer"
+
+      - { label: Body (EN), name: body, widget: markdown, required: true }
+
+      - label: Related Essays
+        name: related_essays
+        widget: list
+        required: false
+        max: 2
+        hint: "Up to 2 essay slugs. Leave empty to auto-populate from same pillar."
+        field: { label: Slug, name: slug, widget: string }
+
+      # ── French fields (all optional) ──────────────────────────────────────
+      - { label: "Title (FR)", name: fr_title, widget: string, required: false }
+      - label: "Description (FR)"
+        name: fr_description
+        widget: string
+        required: false
+        hint: "Max 160 characters."
+        pattern:
+          - "^.{0,160}$"
+          - "Must be 160 characters or fewer"
+      - label: "Body (FR)"
+        name: fr_body
+        widget: markdown
+        required: false
+        hint: "Leave empty to exclude this essay from the French site."
+
+  # ── Companies (singletons) ────────────────────────────────────────────────
+  - name: companies
+    label: Companies
+    files:
+
+      - label: Weyz Mobility
+        name: weyz
+        file: content/companies/weyz.md
+        fields:
+          - { label: Company Name, name: company_name, widget: string }
+          - { label: One-liner (EN), name: one_liner, widget: string }
+          - { label: Problem (EN), name: problem, widget: markdown }
+          - { label: Product (EN), name: product, widget: markdown }
+          - { label: Current Stage (EN), name: current_stage, widget: markdown }
+          - { label: Why Now (EN), name: why_now, widget: markdown }
+          - { label: CTA Text (EN), name: cta_text, widget: string }
+          - { label: CTA Anchor, name: cta_anchor, widget: string, default: "#investor" }
+          - { label: One-liner (FR), name: fr_one_liner, widget: string, required: false }
+          - { label: Problem (FR), name: fr_problem, widget: markdown, required: false }
+          - { label: Product (FR), name: fr_product, widget: markdown, required: false }
+          - { label: Current Stage (FR), name: fr_current_stage, widget: markdown, required: false }
+          - { label: Why Now (FR), name: fr_why_now, widget: markdown, required: false }
+          - { label: CTA Text (FR), name: fr_cta_text, widget: string, required: false }
+
+      - label: Avancier Technologies
+        name: avancier
+        file: content/companies/avancier.md
+        fields:
+          - { label: Company Name, name: company_name, widget: string }
+          - { label: One-liner (EN), name: one_liner, widget: string }
+          - { label: What We Do (EN), name: what_we_do, widget: markdown }
+          - { label: Who We Serve (EN), name: who_we_serve, widget: markdown }
+          - { label: CTA Text (EN), name: cta_text, widget: string }
+          - { label: CTA Anchor, name: cta_anchor, widget: string, default: "#founder" }
+          - { label: What We Do (FR), name: fr_what_we_do, widget: markdown, required: false }
+          - { label: Who We Serve (FR), name: fr_who_we_serve, widget: markdown, required: false }
+          - { label: CTA Text (FR), name: fr_cta_text, widget: string, required: false }
+
+  # ── Site Globals (singleton) ──────────────────────────────────────────────
+  - name: globals
+    label: Site Globals
+    files:
+      - label: Site Globals
+        name: globals
+        file: content/globals.md
+        fields:
+          - { label: Site Tagline (EN), name: site_tagline, widget: string }
+          - { label: Site Sub-tagline (EN), name: site_sub_tagline, widget: string }
+          - { label: About Bio Short (EN), name: about_bio_short, widget: text }
+          - label: Speaker Bio PDF
+            name: speaker_bio_pdf
+            widget: file
+            required: false
+            hint: "Upload the speaker bio PDF. Linked on the About page."
+          - { label: Site Tagline (FR), name: fr_site_tagline, widget: string, required: false }
+          - { label: Site Sub-tagline (FR), name: fr_site_sub_tagline, widget: string, required: false }
+          - { label: About Bio Short (FR), name: fr_about_bio_short, widget: text, required: false }

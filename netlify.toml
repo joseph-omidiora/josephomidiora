@@ -1,0 +1,28 @@
+[build]
+  command = "node scripts/build.js"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Add DEEPL_API_KEY in Netlify UI → Site settings → Environment variables
+  # Get a free key at: https://www.deepl.com/pro-api (Free plan, 500k chars/month)
+  # DEEPL_API_KEY = "your-key-here:fx"
+
+# ── Form email routing ────────────────────────────────────────────────────────
+# Configure email notifications in Netlify UI:
+#   Forms → investor-enquiry   → joseph@weyz.app
+#   Forms → press-enquiry      → joseph@weyz.app
+#   Forms → founder-enquiry    → josephomidiora@gmail.com
+# ─────────────────────────────────────────────────────────────────────────────
+
+[[redirects]]
+  from = "http://josephomidiora.com/*"
+  to = "https://josephomidiora.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.josephomidiora.com/*"
+  to = "https://josephomidiora.com/:splat"
+  status = 301
+  force = true

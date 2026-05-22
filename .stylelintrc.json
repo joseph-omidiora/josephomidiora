@@ -1,0 +1,21 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "custom-property-pattern": null,
+    "selector-class-pattern": null,
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "no-descending-specificity": true,
+    "declaration-no-important": true,
+    "color-no-invalid-hex": true,
+    "font-family-no-duplicate-names": true,
+    "no-duplicate-selectors": true,
+    "property-no-unknown": true,
+    "unit-no-unknown": true
+  },
+  "ignoreFiles": [
+    "node_modules/**",
+    "thinking/**",
+    "fr/**"
+  ]
+}

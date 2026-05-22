@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-alt-href="/fr/building.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building — Joseph Omidiora</title>
+  <meta name="description" content="Weyz Mobility is building payment infrastructure for public transport in Africa. Avancier Technologies provides technical consulting for non-technical founders.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Building — Joseph Omidiora">
+  <meta property="og:description" content="Payment infrastructure for African transport. Technical consulting for founders.">
+  <meta property="og:image" content="https://josephomidiora.com/images/og/building.png">
+  <meta property="og:url" content="https://josephomidiora.com/building.html">
+  <meta property="og:type" content="website">
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://josephomidiora.com/building.html">
+  <link rel="alternate" hreflang="en" href="https://josephomidiora.com/building.html">
+  <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/building.html">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page--building">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <site-nav current-page="/building.html" lang="en" en-path="/building.html" fr-path="/fr/building.html"></site-nav>
+
+  <main id="main" class="container section">
+
+    <header style="margin-bottom:var(--space-10)">
+      <h1>Building</h1>
+      <p class="text-muted" style="font-size:var(--text-h3);max-width:50ch">Two companies. One infrastructure thesis. Both operating.</p>
+    </header>
+
+    <div class="companies">
+
+      <!-- Weyz Mobility -->
+      <article id="weyz" aria-labelledby="weyz-heading">
+        <h2 id="weyz-heading">Weyz Mobility</h2>
+        <p style="font-size:var(--text-h3);margin-bottom:var(--space-6);color:var(--color-slate)">
+          Payment infrastructure for public transport in Africa.
+        </p>
+
+        <div class="company__section">
+          <h3>The Problem</h3>
+          <p>Nigeria's public transport system moves millions of people daily — but it runs on cash. Every naira handed through a bus window is an unrecorded transaction. No fare data. No route data. No passenger data. The transport operators who move Lagos can't access working capital because they have no financial trail. The banks won't lend to a system they can't see.</p>
+        </div>
+
+        <div class="company__section">
+          <h3>The Product</h3>
+          <p>Weyz builds the wallet and tap-to-pay layer for public transport. Passengers load a Weyz wallet and tap to board. Operators see their revenue in real time. Every transaction is recorded, every route is mapped, and the data that has never existed starts to exist.</p>
+          <p style="margin-top:var(--space-2)">The architecture: a lightweight card-reader on the bus, a backend that handles transaction reconciliation, and a wallet app passengers actually want to use. No QR codes. No internet required at point of payment.</p>
+        </div>
+
+        <div class="company__section">
+          <h3>Current Stage</h3>
+          <p>
+            <!-- CMS-editable field: this content is updated by Joseph via Decap CMS -->
+            Product development stage. MoU signed with Federal University Akure (FUTA) as the first institutional deployment partner. The wallet architecture and card-tap hardware are in active development ahead of campus pilot.
+          </p>
+        </div>
+
+        <div class="company__section">
+          <h3>Why Now</h3>
+          <p>Mobile money penetration in West Africa has crossed the threshold where a tap-to-pay behaviour is learnable. The infrastructure gap is widening as cities grow faster than the formal financial system can track. The operator willing to put a reader on their bus today is the one who owns the data in five years.</p>
+        </div>
+
+        <div style="margin-top:var(--space-6)">
+          <cta-button label="Talk to us about Weyz" href="/contact.html#investor" arrow></cta-button>
+        </div>
+      </article>
+
+      <!-- Avancier Technologies -->
+      <article id="avancier" aria-labelledby="avancier-heading">
+        <h2 id="avancier-heading">Avancier Technologies</h2>
+        <p style="font-size:var(--text-h3);margin-bottom:var(--space-6);color:var(--color-slate)">
+          Technical consulting for non-technical founders.
+        </p>
+
+        <div class="company__section">
+          <h3>What We Do</h3>
+          <p>Avancier works with early-stage founders who are building something real but don't yet have a technical co-founder or engineering team. We help them understand what they need to build, in what order, and why — before they hire someone who will tell them the wrong thing.</p>
+          <p style="margin-top:var(--space-2)">Scope: technical architecture reviews, vendor selection, product specification, and engineering team hiring briefs. We don't write the code. We make sure the code that gets written is the right code.</p>
+        </div>
+
+        <div class="company__section">
+          <h3>Who We Serve</h3>
+          <p>African and diaspora founders building in fintech, logistics, mobility, and infrastructure. Founders who raised a pre-seed and now need to spend it correctly. Founders who've been told to "just hire a developer" and know that advice is incomplete.</p>
+        </div>
+
+        <div style="margin-top:var(--space-6)">
+          <cta-button label="Work with Avancier" href="/contact.html#founder" arrow></cta-button>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { SiteNav } from './components/site-nav.js';
+    import { CtaButton } from './components/cta-button.js';
+    if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
+    if (!customElements.get('cta-button')) customElements.define('cta-button', CtaButton);
+  </script>
+  <script type="module" src="js/lang.js"></script>
+</body>
+</html>

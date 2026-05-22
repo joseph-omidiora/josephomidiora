@@ -1,0 +1,220 @@
+/* ============================================================
+   Base — josephomidiora.com
+   CSS reset + typography foundation + font loading.
+   Assumes tokens.css is loaded first.
+   ============================================================ */
+
+/* --- Font loading --- */
+/* Preconnect hints go in <head>; font-display: swap set in @font-face below */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap");
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-base);
+  min-height: 100svh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Typography hierarchy --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  color: var(--color-heading-display);
+}
+
+h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+}
+
+h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading-secondary);
+}
+
+p {
+  max-width: 70ch;
+  line-height: var(--leading-normal);
+}
+
+/* Essay prose — wider measure, more leading */
+.prose p {
+  max-width: var(--essay-width);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-essay);
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+
+.prose p + p {
+  margin-top: var(--space-3);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.prose li {
+  margin-bottom: var(--space-1);
+  line-height: var(--leading-essay);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-signal);
+  padding-left: var(--space-3);
+  margin: var(--space-4) 0;
+  font-style: italic;
+  color: var(--color-slate);
+}
+
+/* --- Links --- */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Focus management (accessibility) --- */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--btn-radius);
+}
+
+/* --- Images --- */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent layout shift — width/height MUST be on img elements */
+img {
+  font-style: italic;   /* Visible alt text styling if image fails */
+}
+
+/* --- Form elements base --- */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* --- Layout containers --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: var(--space-6);
+  }
+}
+
+.section {
+  padding-block: var(--section-padding-mobile);
+}
+
+@media (min-width: 64rem) {
+  .section {
+    padding-block: var(--section-padding-desktop);
+  }
+}
+
+/* --- Skip link (accessibility) --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-2);
+  background: var(--color-signal);
+  color: var(--color-primary);
+  padding: var(--space-1) var(--space-2);
+  font-weight: var(--weight-semibold);
+  z-index: 9999;
+  border-radius: 0 0 var(--btn-radius) var(--btn-radius);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* --- Utility classes --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-signal {
+  color: var(--color-signal);
+}
+
+.text-warm {
+  color: var(--color-warm);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+/* --- Horizontal rule --- */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-6);
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-alt-href="/fr/contact.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Joseph Omidiora</title>
+  <meta name="description" content="Contact Joseph Omidiora — investor enquiries about Weyz Mobility, founder and Avancier Technologies enquiries, and media requests.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact — Joseph Omidiora">
+  <meta property="og:description" content="Three routes: investor enquiries, founder & Avancier enquiries, and press.">
+  <meta property="og:image" content="https://josephomidiora.com/images/og/contact.png">
+  <meta property="og:url" content="https://josephomidiora.com/contact.html">
+  <meta property="og:type" content="website">
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://josephomidiora.com/contact.html">
+  <link rel="alternate" hreflang="en" href="https://josephomidiora.com/contact.html">
+  <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/contact.html">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page--contact">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <site-nav current-page="/contact.html" lang="en" en-path="/contact.html" fr-path="/fr/contact.html"></site-nav>
+
+  <main id="main" class="container section">
+
+    <header style="margin-bottom:var(--space-8)">
+      <h1>Contact</h1>
+      <p class="text-muted" style="max-width:50ch">
+        Three separate routes for three separate conversations. Find yours below.
+      </p>
+    </header>
+
+    <div class="contact-sections">
+
+      <!-- Investor enquiries -->
+      <section id="investor" class="contact-section" aria-labelledby="investor-heading">
+        <h2 class="contact-section__heading" id="investor-heading">Discussing Weyz</h2>
+        <p class="contact-section__sub">
+          Weyz Mobility is in final preparation for its first campus deployment. Conversations with investors focused on African infrastructure are welcome.
+        </p>
+        <contact-form
+          form-name="investor-enquiry"
+          fields='["name","organisation","role","email","message"]'
+          submit-label="Send enquiry"
+        ></contact-form>
+      </section>
+
+      <!-- Founder & Avancier enquiries -->
+      <section id="founder" class="contact-section" aria-labelledby="founder-heading">
+        <h2 class="contact-section__heading" id="founder-heading">Working With Avancier</h2>
+        <p class="contact-section__sub">
+          Avancier works with early-stage founders who need to build something real before they can afford to get it wrong.
+        </p>
+        <contact-form
+          form-name="founder-enquiry"
+          fields='["name","company","email","what-you-are-building"]'
+          submit-label="Get in touch"
+        ></contact-form>
+      </section>
+
+      <!-- Press & media -->
+      <section id="press" class="contact-section" aria-labelledby="press-heading">
+        <h2 class="contact-section__heading" id="press-heading">Media Enquiries</h2>
+        <p class="contact-section__sub">
+          For interview requests, fact-checking, or editorial enquiries.
+        </p>
+        <contact-form
+          form-name="press-enquiry"
+          fields='["name","publication","email","nature-of-enquiry"]'
+          submit-label="Send request"
+        ></contact-form>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { SiteNav } from './components/site-nav.js';
+    import { ContactForm } from './components/contact-form.js';
+    if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
+    if (!customElements.get('contact-form')) customElements.define('contact-form', ContactForm);
+  </script>
+  <script type="module" src="js/lang.js"></script>
+
+  <!-- Anchor-scroll from external links (#investor, #founder, #press) -->
+  <script type="module">
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    }
+  </script>
+</body>
+</html>

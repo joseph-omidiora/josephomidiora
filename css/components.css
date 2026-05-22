@@ -1,0 +1,357 @@
+/* ============================================================
+   Components — josephomidiora.com
+   Nav, CTA button, essay card, contact form, tags, lang toggle.
+   Tokens and base must be loaded first.
+   ============================================================ */
+
+/* ---- Page header / site nav ---- */
+site-nav {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ---- CTA Buttons ---- */
+.cta,
+a.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-body);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: 1;
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  border: var(--btn-border-width) solid var(--color-signal);
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter var(--transition-fast);
+  background: var(--color-signal);
+  color: var(--color-primary);
+}
+
+.cta:hover,
+a.cta:hover {
+  filter: brightness(0.9);
+  text-decoration: none;
+}
+
+.cta--secondary,
+a.cta--secondary {
+  background: transparent;
+  color: var(--color-signal);
+}
+
+.cta:focus-visible,
+a.cta:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---- Essay card ---- */
+.essay-card {
+  background: var(--card-bg, #fff);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.essay-card__pillar {
+  font-size: var(--text-tag);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+.essay-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+.essay-card__description {
+  font-size: 0.9375rem;
+  color: var(--color-mid);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+.essay-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.essay-card__date {
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+}
+
+.essay-card__read {
+  font-size: var(--text-nav);
+  font-weight: var(--weight-semibold);
+  color: var(--color-signal);
+  text-decoration: none;
+}
+
+.essay-card__read:hover {
+  text-decoration: underline;
+}
+
+/* ---- Essay index — pillar filter ---- */
+.pillar-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.pillar-filter__btn {
+  font-family: var(--font-body);
+  font-size: var(--text-tag);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--btn-radius);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  min-height: 44px;
+}
+
+.pillar-filter__btn:hover,
+.pillar-filter__btn[aria-pressed="true"] {
+  background: var(--color-signal);
+  color: var(--color-primary);
+  border-color: var(--color-signal);
+}
+
+.pillar-filter__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---- Contact form (fallback for non-JS) ---- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 40rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-field label {
+  font-size: 0.875rem;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--btn-radius);
+  padding: 0.625rem 0.75rem;
+  width: 100%;
+  transition: border-color var(--transition-fast);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-signal);
+  box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2);
+}
+
+/* ---- Essay page ---- */
+.essay__back {
+  display: inline-block;
+  color: var(--color-signal);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  margin-block: var(--space-4);
+}
+
+.essay__back:hover {
+  text-decoration: underline;
+}
+
+.essay__header {
+  margin-bottom: var(--space-6);
+}
+
+.essay__pillar {
+  display: inline-block;
+  font-size: var(--text-tag);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+  margin-bottom: var(--space-2);
+}
+
+.essay__title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: var(--leading-tight);
+  max-width: var(--essay-width);
+  margin-bottom: var(--space-3);
+}
+
+.essay__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+}
+
+.essay__body {
+  max-width: var(--essay-width);
+}
+
+.essay__share {
+  display: flex;
+  gap: var(--space-3);
+  margin-block: var(--space-6);
+}
+
+.essay__share a {
+  font-size: var(--text-nav);
+  font-weight: var(--weight-semibold);
+  color: var(--color-signal);
+  text-decoration: none;
+}
+
+.essay__share a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Quick facts block ---- */
+.quick-facts {
+  background: var(--color-primary);
+  color: var(--color-warm);
+  padding: var(--space-4);
+  border-radius: var(--btn-radius);
+}
+
+.quick-facts dt {
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-top: var(--space-2);
+}
+
+.quick-facts dt:first-child {
+  margin-top: 0;
+}
+
+.quick-facts dd {
+  font-size: var(--text-body);
+  margin: 0.25rem 0 0;
+}
+
+/* ---- Hero ---- */
+.hero {
+  background: var(--color-primary);
+  color: #fff;
+  padding-block: var(--space-16) var(--space-10);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+
+.hero__headline {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  color: #fff;
+  line-height: var(--leading-tight);
+  max-width: 16ch;
+  margin-bottom: var(--space-3);
+}
+
+.hero__sub {
+  font-family: var(--font-body);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-regular);
+  color: var(--color-warm);
+  margin-bottom: var(--space-8);
+}
+
+/* ---- Audience routing cards ---- */
+.audience-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 48rem) {
+  .audience-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.audience-card {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--btn-radius);
+  padding: var(--space-3);
+}
+
+.audience-card__label {
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-warm);
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Pull quote ---- */
+.pull-quote {
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+}
+
+.pull-quote__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-style: italic;
+  line-height: var(--leading-snug);
+  max-width: 40ch;
+  margin-inline: auto;
+  color: var(--color-warm);
+}
+
+/* ---- Footer ---- */
+footer {
+  background: var(--color-primary);
+  color: var(--color-warm);
+  padding-block: var(--space-6);
+  font-size: var(--text-caption);
+}
