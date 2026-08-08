@@ -1,0 +1,21 @@
+{
+  "integration": "claude",
+  "version": "0.8.12.dev0",
+  "installed_at": "2026-05-26T20:36:21.893410+00:00",
+  "files": {
+    ".claude/commands/speckit.analyze.md": "699032fdd49afe31d23c7191f3fe7bcb1d14b081fbc94c2287e6ba3a57574fda",
+    ".claude/commands/speckit.checklist.md": "d7d691689fe45427c868dcf18ade4df500f0c742a6c91923fefba405d6466dde",
+    ".claude/commands/speckit.clarify.md": "0cc766dcc5cab233ccdf3bc4cfb5759a6d7d1e13e29f611083046f818f5812bb",
+    ".claude/commands/speckit.constitution.md": "58d35eb026f56bb7364d91b8b0382d5dd1249ded6c1449a2b69546693afb85f7",
+    ".claude/commands/speckit.git.commit.md": "9c12c5d74103554d715d51bd17a774ad61064f73db77b7454ebc1af978980eb2",
+    ".claude/commands/speckit.git.feature.md": "59c63b69a062de28649dfbd9e4f3f7c51dac2a84a6d96b6a5a7e26808a79cab5",
+    ".claude/commands/speckit.git.initialize.md": "df3ea14cbb55343dfe470caf86985384ad5829be75319b4945b22ae1acf6d3aa",
+    ".claude/commands/speckit.git.remote.md": "b5e9dfddf2910544a508575f2e7cfe4df97098c219e4790511d855698afba670",
+    ".claude/commands/speckit.git.validate.md": "211dab7d36119fe650c333bd030ce90bb276bcabaa6dc4ba126bcbf117ae443b",
+    ".claude/commands/speckit.implement.md": "2acb475f761e5b65319c4e71847bd07b88c933b45da7be45e7801271f64fcd4d",
+    ".claude/commands/speckit.plan.md": "2ad128b81ccd8f5bfa78b3b43101f377dfddd8f800fa0856f85bf53b1489b783",
+    ".claude/commands/speckit.specify.md": "c7b1ab7ceafc42607e86dd6c0dab0b5cb74462a93a3cdd3b5e7173468cc88bdf",
+    ".claude/commands/speckit.tasks.md": "6b42e295fb67082392b4b62febf297c73655ea67cc9379cd5df80468e920cb4c",
+    ".claude/commands/speckit.taskstoissues.md": "e84794f7a839126defb364ca815352c5c2b2d20db2d6da399fa53e4ddbb7b3ee"
+  }
+}

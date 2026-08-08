@@ -2,53 +2,94 @@
    Design Tokens — josephomidiora.com
    Single source of truth for all visual values.
    All spacing is multiples of --space-unit (8px).
+
+   Three-tier naming: --{category}-{role}-{modifier}
+
+   Tier 1 (--brand-*)   raw brand constants, never used directly
+                        in component CSS.
+   Tier 2 (--color-*)   semantic aliases; these flip per theme.
+   Tier 3 (--btn-*, --card-*)  component-scoped values.
    ============================================================ */
 
 :root {
-  /* --- Colours --- */
-  --color-primary: #0d0d0d;      /* Deep Obsidian — hero bg, nav, dark surfaces */
-  --color-warm: #e8d5b0;         /* Sahara Sand — sub-headlines, accent on dark */
-  --color-signal: #00c853;       /* Infrastructure Green — CTAs, active nav, tags */
-  --color-slate: #2d4a6b;        /* Slate Blue — secondary headings, dividers */
-  --color-base: #f5f0e8;         /* Warm White — page and card backgrounds */
-  --color-text: #2a2a2a;         /* Body copy */
-  --color-border: #e0dad0;       /* Card borders, subtle dividers */
-  --color-muted: #888888;        /* Dates, captions */
-  --color-mid: #555555;          /* Card descriptions */
+  color-scheme: light dark;
+
+  /* --- Tier 1: brand constants (theme-independent) --- */
+  --brand-obsidian: #0d0d0d;      /* Deep Obsidian */
+  --brand-sand: #e8d5b0;          /* Sahara Sand */
+  --brand-signal: #00c853;        /* Infrastructure Green */
+  --brand-signal-ink: #06703a;    /* Signal, darkened to 5.4:1 on warm white */
+  --brand-signal-bright: #29e17a; /* Signal, brightened for dark surfaces */
+  --brand-slate: #2d4a6b;
+  --brand-warm-white: #f5f0e8;
+
+  /* --- Tier 2: semantic colour (light theme) --- */
+  --color-primary: var(--brand-obsidian);   /* inverse surfaces: hero, footer, quote */
+  --color-warm: var(--brand-sand);          /* accent text on inverse surfaces */
+  --color-signal: var(--brand-signal);      /* CTA fills, borders, accent rules */
+  --color-signal-ink: var(--brand-signal-ink); /* signal used as TEXT on light bg */
+  --color-slate: #24405f;                   /* secondary headings — 7.4:1 on base */
+  --color-base: var(--brand-warm-white);    /* page background */
+  --color-surface: #fff;                 /* raised cards */
+  --color-surface-alt: #ece5da;             /* sunken / code blocks */
+  --color-text: #23262b;                    /* body copy */
+  --color-border: #ded6c9;
+  --color-border-strong: #c4b9a6;
+  --color-muted: #5e5b55;                   /* dates, captions — 5.4:1 on the
+                                               darkest light surface (--color-surface-alt),
+                                               so it clears AA on every light surface */
+  --color-mid: #4a4741;                     /* card descriptions */
 
   /* --- Semantic colour aliases --- */
   --color-cta-bg: var(--color-signal);
-  --color-cta-text: var(--color-primary);
-  --color-link: var(--color-signal);
+  --color-cta-text: var(--brand-obsidian);
+  --color-link: var(--color-signal-ink);
   --color-heading-display: var(--color-primary);
   --color-heading-secondary: var(--color-slate);
+  --color-terminal-bg: #0b0e0f;
+  --color-terminal-text: #d7dee1;
+  --color-terminal-dim: #7f8b90;
 
-  /* --- Typography — Fonts --- */
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+  /* --- Typography — Fonts ---
+     Mono is the primary voice: headings, nav, labels, metadata, code.
+     Sans is reserved for long-form prose where measure and rhythm matter. */
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-mono);   /* legacy alias — display type is mono now */
 
-  /* --- Typography — Scale (desktop) --- */
-  --text-hero: clamp(2.5rem, 5vw, 4.5rem);    /* H1 hero: 40–72px */
-  --text-h1: clamp(2rem, 4vw, 2.5rem);        /* H1 page: 32–40px */
-  --text-h2: clamp(1.5rem, 3vw, 2rem);        /* H2 section: 24–32px */
-  --text-h3: clamp(1.125rem, 2vw, 1.5rem);    /* H3 sub: 18–24px */
-  --text-body: 1rem;                           /* 16px */
+  /* --- Typography — Scale (desktop) ---
+     Mono runs visually larger at the same px size, so the display
+     end of the scale is pulled back from the previous serif setting. */
+  --text-hero: clamp(2rem, 4.2vw, 3.5rem);    /* H1 hero: 32–56px */
+  --text-h1: clamp(1.75rem, 3.2vw, 2.25rem);  /* H1 page: 28–36px */
+  --text-h2: clamp(1.25rem, 2.4vw, 1.625rem); /* H2 section: 20–26px */
+  --text-h3: clamp(1.0625rem, 1.6vw, 1.25rem);/* H3 sub: 17–20px */
+  --text-body: 1rem;                          /* 16px */
   --text-body-lg: 1.125rem;                   /* 18px — essay body */
+  --text-mono-body: 0.9375rem;                /* 15px — mono reads large */
   --text-caption: 0.8125rem;                  /* 13px — dates, captions */
   --text-tag: 0.75rem;                        /* 12px — pillar tags */
-  --text-nav: 0.875rem;                       /* 14px — navigation */
+  --text-nav: 0.8125rem;                      /* 13px — navigation */
+  --text-micro: 0.6875rem;                    /* 11px — kicker labels */
 
   /* --- Typography — Line heights --- */
-  --leading-tight: 1.2;
+  --leading-tight: 1.15;
   --leading-snug: 1.4;
   --leading-normal: 1.6;
-  --leading-essay: 1.8;         /* Essay body optimised for reading */
+  --leading-essay: 1.75;
 
   /* --- Typography — Weights --- */
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+
+  /* --- Typography — Tracking ---
+     Mono needs negative tracking at display sizes and positive
+     tracking at micro sizes to stay legible. */
+  --tracking-display: -0.03em;
+  --tracking-normal: 0;
+  --tracking-label: 0.12em;
 
   /* --- Spacing (multiples of 8px base unit) --- */
   --space-1: 0.5rem;    /* 8px */
@@ -64,20 +105,20 @@
 
   /* --- Layout --- */
   --max-width: 75rem;             /* 1200px — content container */
-  --essay-width: 42.5rem;        /* 680px — essay body max-width */
-  --nav-height: 4rem;            /* 64px */
+  --essay-width: 42.5rem;         /* 680px — essay body max-width */
+  --nav-height: 3.5rem;           /* 56px */
   --section-padding-desktop: var(--space-10);
   --section-padding-mobile: var(--space-6);
 
   /* --- Component — CTA Button --- */
   --btn-radius: 2px;
-  --btn-padding: 0.75rem 1.75rem;   /* 12px 28px */
+  --btn-padding: 0.6875rem 1.5rem;   /* 11px 24px */
   --btn-font-size: var(--text-nav);
   --btn-font-weight: var(--weight-semibold);
   --btn-border-width: 1.5px;
 
   /* --- Component — Card --- */
-  --card-bg: #ffffff;
+  --card-bg: var(--color-surface);
   --card-border: 1px solid var(--color-border);
   --card-radius: 2px;
   --card-padding: var(--space-3);
@@ -90,8 +131,57 @@
   --focus-ring: 0 0 0 3px var(--color-signal);
 }
 
-/* Honour reduced-motion preference globally */
+/* ============================================================
+   Dark theme
+   Applied either by system preference or by an explicit
+   data-theme="dark" written to <html> by js/theme.js.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-primary: #14181a;
+    --color-signal: var(--brand-signal-bright);
+    --color-signal-ink: var(--brand-signal-bright);
+    --color-slate: #9fb8d2;
+    --color-base: #0b0e0f;
+    --color-surface: #14181a;
+    --color-surface-alt: #1b2023;
+    --color-text: #d7dee1;
+    --color-border: #262d31;
+    --color-border-strong: #3a4448;
+    --color-muted: #8b969b;
+    --color-mid: #adb7bb;
+    --color-cta-text: #08110c;
+    --color-heading-display: #eef3f5;
+    --color-terminal-bg: #14181a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-primary: #14181a;
+  --color-signal: var(--brand-signal-bright);
+  --color-signal-ink: var(--brand-signal-bright);
+  --color-slate: #9fb8d2;
+  --color-base: #0b0e0f;
+  --color-surface: #14181a;
+  --color-surface-alt: #1b2023;
+  --color-text: #d7dee1;
+  --color-border: #262d31;
+  --color-border-strong: #3a4448;
+  --color-muted: #8b969b;
+  --color-mid: #adb7bb;
+  --color-cta-text: #08110c;
+  --color-heading-display: #eef3f5;
+  --color-terminal-bg: #14181a;
+}
+
+/* Honour reduced-motion preference globally.
+   `!important` is required here and nowhere else: this rule must override
+   any animation or transition declared later in the cascade, including
+   inside component Shadow DOM that inherits these values. Constitution
+   principle II (accessibility) takes precedence over the no-important rule. */
 @media (prefers-reduced-motion: reduce) {
+  /* stylelint-disable declaration-no-important */
   *,
   *::before,
   *::after {
@@ -100,4 +190,5 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* stylelint-enable declaration-no-important */
 }

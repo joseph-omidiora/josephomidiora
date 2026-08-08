@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Joseph Omidiora</title>
   <meta name="description" content="Joseph Omidiora: data engineer, founder of Weyz Mobility and Avancier Technologies, Erasmus Mundus scholar, and infrastructure builder.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <script>
+    try {
+      var t = localStorage.getItem("jo-theme");
+      document.documentElement.setAttribute(
+        "data-theme",
+        t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) { /* storage blocked — fall back to the media query in CSS */ }
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="About Joseph Omidiora">
@@ -12,17 +23,17 @@
   <meta property="og:image" content="https://josephomidiora.com/images/og/about.png">
   <meta property="og:url" content="https://josephomidiora.com/about.html">
   <meta property="og:type" content="profile">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://josephomidiora.com/about.html">
   <link rel="alternate" hreflang="en" href="https://josephomidiora.com/about.html">
   <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/about.html">
+  <link rel="alternate" type="application/rss+xml" title="Joseph Omidiora — Thinking" href="/feed.xml">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -54,7 +65,15 @@
   <site-nav current-page="/about.html" lang="en" en-path="/about.html" fr-path="/fr/about.html"></site-nav>
 
   <main id="main" class="container section">
-    <h1 style="margin-bottom:var(--space-8)">About</h1>
+
+    <header class="page-head">
+      <span class="kicker">background</span>
+      <h1>About</h1>
+      <p class="lede">
+        Three failed exams, three countries, two companies, and one idea that
+        arrived on a Lagos bus.
+      </p>
+    </header>
 
     <div class="about__layout">
 
@@ -63,7 +82,10 @@
 
         <!-- Section 1: The Morning That Changed Everything -->
         <section class="narrative-section" aria-labelledby="about-lagos-heading">
-          <h2 id="about-lagos-heading">The Morning That Changed Everything</h2>
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">01</span>
+            <h2 class="section-head__title" id="about-lagos-heading">The morning that changed everything</h2>
+          </div>
           <div class="prose">
             <p>It was early morning in Lagos. The kind of morning where the heat is already a presence before the sun has fully committed to the day. I was on a bus — the specific bus doesn't matter, but the experience does. Cash passed hand to hand down the aisle. No receipt. No record. The operator at the front collecting fares with one hand and navigating with the other. Millions of naira moving through the city every day, leaving no trace of where they came from or where they went.</p>
             <p>I had been thinking about payments infrastructure for months before that morning, but it was on that bus that the abstraction became concrete. This was not a problem of consumer behaviour or product design. It was a problem of infrastructure. The city was moving without being measured. The money was flowing without being counted. And without counting, there was no capital, no credit, no compound growth. The bus was the bank — and it didn't know it yet.</p>
@@ -72,7 +94,10 @@
 
         <!-- Section 2: The Failures First -->
         <section class="narrative-section" aria-labelledby="about-failures-heading">
-          <h2 id="about-failures-heading">The Failures First</h2>
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">02</span>
+            <h2 class="section-head__title" id="about-failures-heading">The failures first</h2>
+          </div>
           <div class="prose">
             <p>I failed my SSCE three times between 2008 and 2011. Not once — three times. In Nigeria, where your exam results are the first hard gate between you and a university place, that is a significant failure. It is the kind of failure that causes families to have quiet conversations about what to do with a son who cannot seem to pass.</p>
             <p>There were other failures. I lost money in crypto before losing money in crypto was a well-documented way to lose money. I tried a fish pond. The fish pond failed too. I am not telling these stories to perform vulnerability — I am telling them because they are the most accurate record of how I think. I keep trying things that seem structurally correct even when the first iteration fails. I don't experience failure as evidence that the direction is wrong. I experience it as data about what needs to change.</p>
@@ -82,7 +107,10 @@
 
         <!-- Section 3: The Erasmus Years -->
         <section class="narrative-section" aria-labelledby="about-erasmus-heading">
-          <h2 id="about-erasmus-heading">The Erasmus Years</h2>
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">03</span>
+            <h2 class="section-head__title" id="about-erasmus-heading">The Erasmus years</h2>
+          </div>
           <div class="prose">
             <p>The Erasmus Mundus scholarship took me across three countries — France, the United Kingdom, and Sweden — in the span of a single academic programme. Each move stripped away another layer of assumptions I had about how institutions work, how money moves, and what ambition is allowed to look like in different cultures.</p>
             <p>The road trip happened somewhere in this period. I won't describe it in full here, but the specific conversation it produced has stayed with me: a question about whether the businesses we build should outlive us. Not in the sentimental sense — in the infrastructural sense. A road, a bridge, a payment rail. These things outlive their builders because they were designed to carry weight, not just to demonstrate capability. That question reoriented everything I subsequently built toward infrastructure and away from applications.</p>
@@ -92,7 +120,11 @@
 
         <!-- Section 4: What I'm Building Now -->
         <section class="narrative-section" aria-labelledby="about-now-heading">
-          <h2 id="about-now-heading">What I'm Building Now</h2>
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">04</span>
+            <h2 class="section-head__title" id="about-now-heading">What I'm building now</h2>
+            <span class="section-head__aside"><a href="/now.html">/now →</a></span>
+          </div>
           <div class="prose">
             <p>Weyz Mobility is approaching its first deployment — a campus transport operator in Nigeria, the first real-world test of the tap-to-pay system that puts transaction data on routes that have never been measured. Avancier Technologies works with founders who are earlier in their process, making sure the technical decisions they make in the first eighteen months don't constrain the company for the next ten years.</p>
             <p>Both companies are operating. Neither is finished. The work continues. <a href="/building.html">Read more about what I'm building →</a></p>
@@ -126,19 +158,68 @@
           <dt>Companies</dt>
           <dd>Weyz Mobility</dd>
           <dd>Avancier Technologies</dd>
+
+          <dt>Writes at</dt>
+          <dd><a href="/thinking.html">/thinking</a></dd>
         </dl>
       </aside>
 
     </div>
 
+    <!-- Trajectory -->
+    <section class="section" aria-labelledby="trajectory-heading">
+      <div class="section-head">
+        <span class="section-head__index" aria-hidden="true">05</span>
+        <h2 class="section-head__title" id="trajectory-heading">Trajectory</h2>
+      </div>
+
+      <ol class="timeline">
+        <li>
+          <span class="timeline__year">2008–2011</span>
+          <p class="timeline__label">SSCE, failed three times. Kept sitting it.</p>
+        </li>
+        <li>
+          <span class="timeline__year">Erasmus Mundus</span>
+          <p class="timeline__label">Studied across France, the United Kingdom and Sweden.</p>
+        </li>
+        <li>
+          <span class="timeline__year">Lagos</span>
+          <p class="timeline__label">The bus ride that turned a payments abstraction into a company.</p>
+        </li>
+        <li>
+          <span class="timeline__year">Stockholm</span>
+          <p class="timeline__label">Settled. Founded Avancier Technologies; consulting for early-stage founders.</p>
+        </li>
+        <li>
+          <span class="timeline__year">Weyz Mobility</span>
+          <p class="timeline__label">Founded. MoU signed with Federal University Akure for the first campus deployment.</p>
+        </li>
+      </ol>
+    </section>
+
     <!-- Speaker Bio -->
     <section class="speaker-bio" aria-labelledby="speaker-bio-heading">
-      <h2 class="speaker-bio__label" id="speaker-bio-heading">Speaker Bio</h2>
+      <h2 class="speaker-bio__label" id="speaker-bio-heading">Speaker bio &amp; press kit</h2>
       <div class="prose">
         <p>Joseph Omidiora is a data engineer and founder based in Stockholm, Sweden. He is the founder of Weyz Mobility, a company building payment infrastructure for public transport in Africa, and Avancier Technologies, a technical consulting firm serving early-stage African and diaspora founders. A graduate of the Erasmus Mundus programme with studies in France, the United Kingdom, and Sweden, Omidiora is focused on building financial infrastructure that addresses the transaction data gap at the core of African public transport. He speaks on infrastructure-first entrepreneurship, the intersection of mobility and fintech in emerging markets, and building companies of civilisational scale from the African continent and its diaspora.</p>
       </div>
 
-      <div class="speaker-bio__media" style="margin-top:var(--space-4);display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
+      <dl class="spec">
+        <div class="spec__row">
+          <dt class="spec__key">speaks on</dt>
+          <dd class="spec__value">Infrastructure-first entrepreneurship · Mobility × fintech in emerging markets · Building from the diaspora</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="spec__key">based in</dt>
+          <dd class="spec__value">Stockholm, Sweden (CET)</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="spec__key">press contact</dt>
+          <dd class="spec__value"><a href="/contact.html#press">Media enquiry form</a></dd>
+        </div>
+      </dl>
+
+      <div class="project__footer">
         <a
           href="images/content/joseph-omidiora-press.jpg"
           download="joseph-omidiora-press-photo.jpg"
@@ -147,15 +228,57 @@
         >
           Download press photo →
         </a>
-        <span class="text-muted" style="font-size:var(--text-caption)">High-resolution JPG — free to use for editorial purposes with credit.</span>
+        <span class="text-muted mono">High-resolution JPG — free for editorial use with credit.</span>
       </div>
     </section>
 
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+      <div class="site-footer__grid">
+        <div>
+          <h2>Joseph Omidiora</h2>
+          <p class="site-footer__blurb">
+            Data engineer and founder, building digital infrastructure
+            that solves African challenges.
+          </p>
+        </div>
+        <div>
+          <h2>Site</h2>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/building.html">Building</a></li>
+            <li><a href="/thinking.html">Thinking</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/uses.html">Uses</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></li>
+            <li><a href="/feed.xml">RSS</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Easter egg. Lazy-loaded by js/easter-egg.js once the footer
+           nears the viewport, so it never touches the critical path. -->
+      <pixel-tetris></pixel-tetris>
+
+      <div class="site-footer__base">
+        <p>© 2026 Joseph Omidiora</p>
+        <p><em>
+          And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.
+        </em>
+      </p>
+      </div>
     </div>
   </footer>
 
@@ -163,6 +286,8 @@
     import { SiteNav } from './components/site-nav.js';
     if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
   </script>
+  <script type="module" src="js/theme.js"></script>
   <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/easter-egg.js"></script>
 </body>
 </html>

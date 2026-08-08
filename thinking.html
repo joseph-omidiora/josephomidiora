@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thinking — Joseph Omidiora</title>
   <meta name="description" content="Essays on infrastructure, Africa, and building — by Joseph Omidiora.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <script>
+    try {
+      var t = localStorage.getItem("jo-theme");
+      document.documentElement.setAttribute(
+        "data-theme",
+        t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) { /* storage blocked — fall back to the media query in CSS */ }
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Thinking — Joseph Omidiora">
@@ -12,17 +23,17 @@
   <meta property="og:image" content="https://josephomidiora.com/images/og/thinking.png">
   <meta property="og:url" content="https://josephomidiora.com/thinking.html">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://josephomidiora.com/thinking.html">
   <link rel="alternate" hreflang="en" href="https://josephomidiora.com/thinking.html">
   <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/thinking.html">
+  <link rel="alternate" type="application/rss+xml" title="Joseph Omidiora — Thinking" href="/feed.xml">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -35,10 +46,31 @@
 
   <main id="main" class="container section">
 
-    <header style="margin-bottom:var(--space-8)">
+    <header class="page-head">
+      <span class="kicker">essays</span>
       <h1>Thinking</h1>
-      <p class="text-muted" style="font-size:var(--text-h3)">Infrastructure. Africa. Building.</p>
+      <p class="lede">Infrastructure. Africa. Building.</p>
+      <p class="newsletter__note">
+        Subscribe by <a href="/feed.xml">RSS</a> or get new essays
+        <a href="/#dispatch-heading">by email</a>.
+      </p>
     </header>
+
+    <!-- Search + result count -->
+    <div class="essay-toolbar">
+      <div class="essay-search">
+        <label class="sr-only" for="essay-search-input">Search essays</label>
+        <input
+          class="essay-search__input"
+          id="essay-search-input"
+          type="search"
+          placeholder="filter essays…"
+          autocomplete="off"
+          spellcheck="false"
+        >
+      </div>
+      <p class="essay-count" id="essay-count" role="status" aria-live="polite"></p>
+    </div>
 
     <!-- Pillar filter -->
     <nav class="pillar-filter" aria-label="Filter essays by pillar">
@@ -51,18 +83,60 @@
     </nav>
 
     <!-- Essay grid -->
-    <div class="essay-grid" id="essay-grid" role="list" aria-live="polite" aria-label="Essays">
-      <!-- Populated from essays-manifest.json -->
+    <div class="essay-grid" id="essay-grid" role="list" aria-label="Essays">
+      <!-- Populated from content/essays-manifest.json -->
     </div>
 
-    <!-- Empty state -->
-    <p class="empty-state" id="empty-state" role="status">No essays in this pillar yet.</p>
+    <!-- Empty / error state -->
+    <p class="empty-state" id="empty-state" role="status">No essays match that filter.</p>
 
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+      <div class="site-footer__grid">
+        <div>
+          <h2>Joseph Omidiora</h2>
+          <p class="site-footer__blurb">
+            Data engineer and founder, building digital infrastructure
+            that solves African challenges.
+          </p>
+        </div>
+        <div>
+          <h2>Site</h2>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/building.html">Building</a></li>
+            <li><a href="/thinking.html">Thinking</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/uses.html">Uses</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></li>
+            <li><a href="/feed.xml">RSS</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Easter egg. Lazy-loaded by js/easter-egg.js once the footer
+           nears the viewport, so it never touches the critical path. -->
+      <pixel-tetris></pixel-tetris>
+
+      <div class="site-footer__base">
+        <p>© 2026 Joseph Omidiora</p>
+        <p><em>
+          And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.
+        </em>
+      </p>
+      </div>
     </div>
   </footer>
 
@@ -73,50 +147,76 @@
     if (!customElements.get('essay-card')) customElements.define('essay-card', EssayCard);
   </script>
 
-  <!-- Essay loading + pillar filter -->
+  <!-- Essay loading + pillar filter + text search -->
   <script type="module" defer>
     const grid = document.getElementById('essay-grid');
     const emptyState = document.getElementById('empty-state');
+    const countEl = document.getElementById('essay-count');
+    const searchInput = document.getElementById('essay-search-input');
     const filterBtns = document.querySelectorAll('[data-pillar-filter]');
+
     let allEssays = [];
+    let activePillar = 'all';
+    let query = '';
 
-    function renderEssays(pillar) {
-      const filtered = pillar === 'all'
-        ? allEssays
-        : allEssays.filter((e) => e.pillar === pillar);
+    function matches(essay) {
+      if (activePillar !== 'all' && essay.pillar !== activePillar) { return false; }
+      if (!query) { return true; }
+      const haystack = `${essay.title} ${essay.description ?? ''} ${essay.pillar ?? ''}`.toLowerCase();
+      return haystack.includes(query);
+    }
 
-      grid.innerHTML = filtered.map((e) => `
-        <essay-card
-          role="listitem"
-          data-pillar-card="${e.pillar}"
-          title="${e.title.replace(/"/g, '&quot;')}"
-          slug="${e.slug}"
-          date="${e.date}"
-          pillar="${e.pillar}"
-          description="${(e.description ?? '').replace(/"/g, '&quot;')}"
-        ></essay-card>
-      `).join('');
+    function render() {
+      const filtered = allEssays.filter(matches);
 
-      const isEmpty = filtered.length === 0;
-      emptyState.classList.toggle('visible', isEmpty);
+      /* Build with DOM APIs rather than an HTML string so essay text can
+         never be interpreted as markup. */
+      grid.replaceChildren(...filtered.map((e) => {
+        const card = document.createElement('essay-card');
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('data-pillar-card', e.pillar ?? '');
+        card.setAttribute('title', e.title ?? '');
+        card.setAttribute('slug', e.slug ?? '');
+        card.setAttribute('date', e.date ?? '');
+        card.setAttribute('pillar', e.pillar ?? '');
+        card.setAttribute('description', e.description ?? '');
+        if (e.readTime) { card.setAttribute('read-time', String(e.readTime)); }
+        return card;
+      }));
+
+      countEl.textContent = `${filtered.length} / ${allEssays.length} essays`;
+      emptyState.textContent = 'No essays match that filter.';
+      emptyState.classList.toggle('visible', filtered.length === 0 && allEssays.length > 0);
     }
 
     filterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         filterBtns.forEach((b) => b.setAttribute('aria-pressed', 'false'));
         btn.setAttribute('aria-pressed', 'true');
-        renderEssays(btn.dataset.pillarFilter);
+        activePillar = btn.dataset.pillarFilter;
+        render();
       });
+    });
+
+    /* Debounced so the live region isn't announced on every keystroke. */
+    let searchTimer;
+    searchInput?.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        query = searchInput.value.trim().toLowerCase();
+        render();
+      }, 180);
     });
 
     async function loadEssays() {
       try {
         const res = await fetch('/content/essays-manifest.json');
-        if (!res.ok) { return; }
+        if (!res.ok) { throw new Error(`manifest ${res.status}`); }
         allEssays = await res.json();
-        renderEssays('all');
+        render();
       } catch {
-        emptyState.textContent = 'Essays coming soon.';
+        countEl.textContent = '';
+        emptyState.textContent = "Essays couldn't be loaded. Try refreshing, or subscribe by RSS at /feed.xml.";
         emptyState.classList.add('visible');
       }
     }
@@ -124,6 +224,8 @@
     loadEssays();
   </script>
 
+  <script type="module" src="js/theme.js"></script>
   <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/easter-egg.js"></script>
 </body>
 </html>

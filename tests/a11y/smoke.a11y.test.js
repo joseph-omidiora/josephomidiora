@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { runAxe } from "../fixtures/setup.js";
 
 describe("axe-core smoke test", () => {

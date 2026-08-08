@@ -1,3 +1,36 @@
+/**
+ * <contact-form> — a Netlify-backed enquiry form.
+ *
+ * Purpose
+ *   Renders one of the site's three enquiry routes (investor, founder,
+ *   press) from a declarative field list, and submits it to Netlify
+ *   Forms without a page navigation.
+ *
+ * Public API
+ *   Attributes:
+ *     form-name     — Netlify form name; also selects the fallback
+ *                     email shown if submission fails. Required.
+ *     fields        — JSON array of field keys drawn from FIELD_DEFAULTS.
+ *                     Default ["name","email","message"].
+ *     submit-label  — submit button text. Default "Send".
+ *   Events: none.
+ *
+ * Usage
+ *   <contact-form form-name="investor-enquiry"
+ *                 fields='["name","email","message"]'
+ *                 submit-label="Send enquiry"></contact-form>
+ *
+ * Offline / degraded-network behaviour
+ *   A failed POST is caught and replaced with an inline, assertive
+ *   error naming the direct email address for that route, so the user
+ *   always has a way to reach a human.
+ *
+ * Known limitations
+ *   Relies on Netlify's build-time form detection; the form markup
+ *   lives in Shadow DOM, so each form name must also be registered in
+ *   Netlify's UI or via a static form stub.
+ */
+
 /* Field config: id, label, type, required, optional */
 const FIELD_DEFAULTS = {
   name: { label: "Name", type: "text", required: true },
@@ -39,23 +72,27 @@ const STYLES = `
 
   .field { display: flex; flex-direction: column; gap: 0.375rem; }
 
+  /* Field labels read as config keys: uppercase, tracked-out mono. */
   label {
-    font-family: var(--font-body, "DM Sans", sans-serif);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text, #2a2a2a);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: var(--text-caption, 0.8125rem);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted, #6d6a63);
   }
 
   input,
   textarea {
-    font-family: var(--font-body, "DM Sans", sans-serif);
-    font-size: 1rem;
-    color: var(--color-text, #2a2a2a);
-    background: #fff;
-    border: 1px solid var(--color-border, #e0dad0);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: var(--text-mono-body, 0.9375rem);
+    color: var(--color-text, #23262b);
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border, #ded6c9);
     border-radius: var(--btn-radius, 2px);
     padding: 0.625rem 0.75rem;
     width: 100%;
+    box-sizing: border-box;
     transition: border-color 120ms ease;
   }
 
@@ -63,25 +100,26 @@ const STYLES = `
   textarea:focus {
     outline: none;
     border-color: var(--color-signal, #00c853);
-    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2);
+    box-shadow: var(--focus-ring, 0 0 0 3px #00c853);
   }
 
   button[type="submit"] {
     align-self: flex-start;
-    font-family: var(--font-body, "DM Sans", sans-serif);
-    font-size: 0.875rem;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: var(--btn-font-size, 0.8125rem);
     font-weight: 600;
-    padding: 0.75rem 1.75rem;
+    letter-spacing: -0.01em;
+    padding: 0.6875rem 1.5rem;
     background: var(--color-signal, #00c853);
-    color: var(--color-primary, #0d0d0d);
-    border: none;
+    color: var(--color-cta-text, #0d0d0d);
+    border: 1.5px solid var(--color-signal, #00c853);
     border-radius: var(--btn-radius, 2px);
     cursor: pointer;
     transition: filter 120ms ease;
     min-height: 44px;
   }
 
-  button[type="submit"]:hover { filter: brightness(0.9); }
+  button[type="submit"]:hover { filter: brightness(0.92); }
 
   button[type="submit"]:focus-visible {
     outline: none;
@@ -89,9 +127,17 @@ const STYLES = `
   }
 
   [data-success],
-  [data-error] { display: none; padding: var(--space-2, 1rem); border-radius: 2px; font-size: 0.9375rem; }
-  [data-success] { background: #e8f5e9; color: #1b5e20; }
-  [data-error] { background: #ffebee; color: #b71c1c; }
+  [data-error] {
+    display: none;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: var(--text-caption, 0.8125rem);
+    padding: var(--space-2, 1rem);
+    border-radius: 2px;
+    border-left: 2px solid currentcolor;
+  }
+
+  [data-success] { background: rgb(0 200 83 / 10%); color: #06703a; }
+  [data-error] { background: rgb(183 28 28 / 10%); color: #b3261e; }
   [data-success].visible,
   [data-error].visible { display: block; }
 `;

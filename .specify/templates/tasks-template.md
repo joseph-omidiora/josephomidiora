@@ -13,11 +13,33 @@ description: "Task list template for feature implementation"
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
-## Format: `[ID] [P?] [Story] Description`
+## Format: `[ID] [P?] [Story] [TYPE?] Description`
 
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
+- **[TYPE]**: Optional task type tag — see Task Types below
 - Include exact file paths in descriptions
+
+## Task Types
+
+Standard task types and their definitions of done:
+
+**`[a11y-audit]`** — Accessibility audit task.
+_Definition of done_:
+- axe-core run against the component/page in Vitest with 0 violations.
+- Keyboard navigation manually verified: all interactive elements reachable, logical tab order, no keyboard traps.
+- Screen-reader tested (VoiceOver or NVDA): focus announcements correct, dynamic content changes announced.
+- Color contrast verified: ≥ 4.5:1 for normal text, ≥ 3:1 for large text and UI components.
+- `prefers-reduced-motion` verified: animations absent or instant when preference is set.
+- Result documented in PR description under "Accessibility" heading.
+
+**`[perf-budget]`** — Performance budget verification task.
+_Definition of done_:
+- Lighthouse CI run against home page + one content page (throttled 4G): Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90, SEO ≥ 90.
+- LCP ≤ 2.5 s, CLS < 0.1, INP ≤ 200 ms confirmed in Lighthouse output.
+- All new images confirmed ≤ 100 KB each (WebP/AVIF) via CI asset-size check.
+- Critical-path weight confirmed ≤ 200 KB uncompressed; JS ≤ 50 KB, CSS ≤ 20 KB, fonts ≤ 60 KB WOFF2.
+- Budget figures documented in PR description under "Performance" heading with before/after comparison.
 
 ## Path Conventions
 

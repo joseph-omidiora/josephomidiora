@@ -1,5 +1,3 @@
-import { configureAxe } from "axe-core";
-
 /* Default axe configuration used across all a11y tests */
 export const axeConfig = {
   rules: [

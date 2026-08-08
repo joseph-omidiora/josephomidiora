@@ -1,6 +1,7 @@
 /* ============================================================
    Components — josephomidiora.com
-   Nav, CTA button, essay card, contact form, tags, lang toggle.
+   Nav, buttons, cards, terminal hero, stat tiles, status badges,
+   spec tables, tag chips, newsletter, forms, footer.
    Tokens and base must be loaded first.
    ============================================================ */
 
@@ -12,36 +13,111 @@ site-nav {
   z-index: 100;
 }
 
-/* ---- CTA Buttons ---- */
+/* ============================================================
+   Section headings — numbered, like a spec document
+   ============================================================ */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-head__index {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-signal-ink);
+  flex-shrink: 0;
+}
+
+.section-head__title {
+  font-size: var(--text-h2);
+  margin: 0;
+}
+
+.section-head__aside {
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.section-head__aside a {
+  color: var(--color-link);
+}
+
+@media (width <= 34rem) {
+  .section-head {
+    flex-wrap: wrap;
+  }
+
+  .section-head__aside {
+    margin-inline-start: 0;
+    flex-basis: 100%;
+  }
+}
+
+/* ============================================================
+   CTA buttons
+   ============================================================ */
+
 .cta,
 a.cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.4em;
-  font-family: var(--font-body);
+  gap: 0.5em;
+  font-family: var(--font-mono);
   font-size: var(--btn-font-size);
   font-weight: var(--btn-font-weight);
+  letter-spacing: -0.01em;
   line-height: 1;
   padding: var(--btn-padding);
   border-radius: var(--btn-radius);
   border: var(--btn-border-width) solid var(--color-signal);
   text-decoration: none;
   cursor: pointer;
-  transition: filter var(--transition-fast);
+  transition: filter var(--transition-fast), background var(--transition-fast);
   background: var(--color-signal);
-  color: var(--color-primary);
+  color: var(--color-cta-text);
+  min-height: 44px;
 }
 
 .cta:hover,
 a.cta:hover {
-  filter: brightness(0.9);
+  filter: brightness(0.92);
   text-decoration: none;
 }
 
 .cta--secondary,
 a.cta--secondary {
   background: transparent;
-  color: var(--color-signal);
+  color: var(--color-signal-ink);
+}
+
+.cta--secondary:hover,
+a.cta--secondary:hover {
+  background: color-mix(in srgb, var(--color-signal) 12%, transparent);
+  filter: none;
+}
+
+.cta--ghost,
+a.cta--ghost {
+  background: transparent;
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.cta--ghost:hover,
+a.cta--ghost:hover {
+  border-color: var(--color-signal);
+  background: transparent;
+  filter: none;
 }
 
 .cta:focus-visible,
@@ -50,66 +126,601 @@ a.cta:focus-visible {
   box-shadow: var(--focus-ring);
 }
 
-/* ---- Essay card ---- */
-.essay-card {
-  background: var(--card-bg, #fff);
-  border: var(--card-border);
-  border-radius: var(--card-radius);
-  padding: var(--card-padding);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.essay-card__pillar {
-  font-size: var(--text-tag);
+/* Inline text link that reads like a shell command */
+.link-cmd {
+  font-family: var(--font-mono);
+  font-size: var(--text-nav);
   font-weight: var(--weight-medium);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-signal);
+  color: var(--color-link);
 }
 
-.essay-card__title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: var(--weight-bold);
-  color: var(--color-primary);
-  line-height: var(--leading-snug);
-  margin: 0;
+.link-cmd::before {
+  content: "→ ";
 }
 
-.essay-card__description {
-  font-size: 0.9375rem;
-  color: var(--color-mid);
-  line-height: var(--leading-normal);
-  margin: 0;
-}
+/* ============================================================
+   Terminal hero
+   ============================================================ */
 
-.essay-card__footer {
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--brand-obsidian);
+  color: #fff;
+  padding-block: var(--space-12) var(--space-10);
+  min-height: min(100svh, 52rem);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 0.5rem;
+  border-bottom: 1px solid #1e2224;
 }
 
-.essay-card__date {
+/* ---- Particle field ----
+   Decorative WebGL layer behind the hero copy. It sits at the very back
+   of the hero's stacking context; the scrim above it is what keeps text
+   contrast independent of whatever the simulation happens to be doing. */
+hero-field {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  pointer-events: none;
+}
+
+hero-field canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Scrim: opaque behind the copy on the left, clear over the swarm on the
+   right. Guarantees the headline keeps its contrast ratio no matter how
+   bright the core pulses. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(13, 13, 13, 0.97) 0%,
+      rgba(13, 13, 13, 0.95) 46%,
+      rgba(13, 13, 13, 0.72) 70%,
+      rgba(13, 13, 13, 0.55) 100%
+    );
+}
+
+/* Below the two-column threshold the copy spans the full width, so the
+   scrim covers the whole field evenly rather than just the left side. */
+@media (width <= 75rem) {
+  .hero::after {
+    background: rgba(13, 13, 13, 0.94);
+  }
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__terminal {
+  max-width: 62rem;
+}
+
+/* The `josephomidiora:~$ whoami` prompt line above the headline.
+   Colour is brighter than --color-terminal-dim because this sits over
+   the particle field, and mid-grey text loses contrast as the background
+   behind it brightens. Measured at 4.5:1 or better across every viewport
+   with the field at its brightest frame. */
+.hero__prompt {
+  font-family: var(--font-mono);
   font-size: var(--text-caption);
+  color: #a8b1b5;
+  margin-bottom: var(--space-3);
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.hero__prompt::-webkit-scrollbar {
+  display: none;
+}
+
+.hero__prompt-user {
+  color: var(--brand-signal);
+}
+
+.hero__prompt-path {
+  color: var(--brand-sand);
+}
+
+.hero__headline {
+  font-family: var(--font-mono);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-display);
+  color: #fff;
+  line-height: var(--leading-tight);
+  max-width: 24ch;
+  margin-bottom: var(--space-4);
+}
+
+/* Blinking block cursor trailing the headline */
+.hero__cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.9em;
+  margin-inline-start: 0.12em;
+  background: var(--brand-signal);
+  vertical-align: -0.06em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__cursor {
+    animation: blink 1.1s step-end infinite;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% { opacity: 1; }
+
+  50% { opacity: 0; }
+}
+
+.hero__sub {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-body);
+  font-weight: var(--weight-regular);
+  color: var(--brand-sand);
+  max-width: 62ch;
+  margin-bottom: var(--space-6);
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: #a8b1b5;   /* see .hero__prompt — same reason */
+  margin-bottom: var(--space-8);
+}
+
+.hero__meta b {
+  font-weight: var(--weight-regular);
+  color: #fff;
+}
+
+/* ---- Audience routing cards ---- */
+.audience-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+@media (width <= 48rem) {
+  .audience-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The particle field passes behind these, so each card carries its own
+   obsidian backdrop. Measured worst-case label contrast over the
+   brightest frame of the swarm is 11.6:1 with this in place, versus
+   3.3:1 without it. */
+.audience-card {
+  background: rgba(13, 13, 13, 0.86);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--btn-radius);
+  padding: var(--space-3);
+  transition: border-color var(--transition-fast);
+}
+
+.audience-card:hover {
+  border-color: rgba(0, 200, 83, 0.55);
+}
+
+.audience-card__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--brand-sand);
+  margin-bottom: var(--space-2);
+}
+
+.audience-card__label::before {
+  content: "// ";
+  color: var(--brand-signal);
+}
+
+/* ============================================================
+   Stat tiles — the "instrument panel" strip
+   ============================================================ */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--btn-radius);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+@media (width <= 62rem) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 26rem) {
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat {
+  padding: var(--space-3);
+  border-inline-start: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+}
+
+.stat:first-child {
+  border-inline-start: none;
+}
+
+/* Label sits above the figure, as on an instrument panel. */
+.stat__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-muted);
+  margin-bottom: var(--space-1);
+}
+
+.stat__value {
+  display: block;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-heading-display);
+  line-height: 1.1;
+}
+
+/* Row 1 has no top border; the grid edge supplies it */
+@media (width >= 62.0625rem) {
+  .stat {
+    border-top: none;
+  }
+}
+
+/* ============================================================
+   Status badge — `● operating`
+   ============================================================ */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.25em 0.75em;
+}
+
+.status::before {
+  content: "";
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: currentcolor;
+  flex-shrink: 0;
+}
+
+.status--live {
+  color: var(--color-signal-ink);
+  border-color: color-mix(in srgb, var(--color-signal) 45%, transparent);
+}
+
+.status--building {
+  color: var(--color-slate);
+  border-color: color-mix(in srgb, var(--color-slate) 40%, transparent);
+}
+
+/* ============================================================
+   Spec table — key/value pairs rendered like a config block
+   ============================================================ */
+
+.spec {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  border-top: 1px solid var(--color-border);
+}
+
+.spec__row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--space-2);
+  padding-block: 0.625rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (width <= 34rem) {
+  .spec__row {
+    grid-template-columns: 1fr;
+    gap: 0.125rem;
+  }
+}
+
+.spec__key {
   color: var(--color-muted);
 }
 
-.essay-card__read {
-  font-size: var(--text-nav);
-  font-weight: var(--weight-semibold);
-  color: var(--color-signal);
+.spec__key::after {
+  content: ":";
+}
+
+.spec__value {
+  color: var(--color-text);
+  margin: 0;
+  max-width: none;
+}
+
+/* ============================================================
+   Project card — used on home and /building
+   ============================================================ */
+
+.project {
+  border: 1px solid var(--color-border);
+  border-radius: var(--btn-radius);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color var(--transition-fast);
+}
+
+.project:hover {
+  border-color: var(--color-border-strong);
+}
+
+.project__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.project__name {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading-display);
+  margin: 0;
+}
+
+.project__tagline {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--color-slate);
+  margin: 0;
+}
+
+.project__body {
+  color: var(--color-mid);
+  margin: 0;
+}
+
+.project__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--space-1);
+}
+
+/* ---- Tag chips — `[infrastructure]` ---- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  list-style: none;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  padding: 0.15em 0.5em;
+  white-space: nowrap;
+}
+
+.chip::before {
+  content: "[";
+  color: var(--color-signal-ink);
+}
+
+.chip::after {
+  content: "]";
+  color: var(--color-signal-ink);
+}
+
+/* ============================================================
+   Link rows — `/now`, `elsewhere`, `uses` lists
+   ============================================================ */
+
+.link-rows {
+  list-style: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.link-row {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* The anchor carries a class rather than being matched as a bare element,
+   so this block never competes on specificity with the plain `a` rules
+   further down (footer, essay share). */
+.link-row__link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-body);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link-row__link:hover {
+  color: var(--color-signal-ink);
   text-decoration: none;
 }
 
-.essay-card__read:hover {
-  text-decoration: underline;
+.link-row__name {
+  font-weight: var(--weight-medium);
 }
 
-/* ---- Essay index — pillar filter ---- */
+.link-row__meta {
+  margin-inline-start: auto;
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.link-row__link:hover .link-row__meta {
+  color: var(--color-signal-ink);
+}
+
+/* ============================================================
+   Log list — dated entries for /now and changelog-style content
+   ============================================================ */
+
+.log {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.log__item {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (width <= 40rem) {
+  .log__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}
+
+.log__date {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  padding-top: 0.2em;
+}
+
+.log__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-body);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading-display);
+  margin-bottom: 0.25rem;
+}
+
+.log__body {
+  color: var(--color-mid);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+/* ============================================================
+   Essay index — search + pillar filter + tag cloud
+   ============================================================ */
+
+.essay-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.essay-search {
+  position: relative;
+  flex: 1 1 18rem;
+  max-width: 24rem;
+}
+
+/* Classed rather than matched as a bare `input`, for the same
+   specificity-ordering reason as .link-row__link above. */
+.essay-search__input {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--text-nav);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--btn-radius);
+  padding-block: 0.625rem;
+  padding-inline: 2rem 0.75rem;
+  min-height: 44px;
+  transition: border-color var(--transition-fast);
+}
+
+.essay-search__input:focus {
+  outline: none;
+  border-color: var(--color-signal);
+  box-shadow: var(--focus-ring);
+}
+
+.essay-search::before {
+  content: "/";
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: var(--text-nav);
+  color: var(--color-signal-ink);
+  pointer-events: none;
+}
+
+.essay-count {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  margin-inline-start: auto;
+}
+
 .pillar-filter {
   display: flex;
   flex-wrap: wrap;
@@ -118,8 +729,8 @@ a.cta:focus-visible {
 }
 
 .pillar-filter__btn {
-  font-family: var(--font-body);
-  font-size: var(--text-tag);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
   font-weight: var(--weight-medium);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -136,7 +747,7 @@ a.cta:focus-visible {
 .pillar-filter__btn:hover,
 .pillar-filter__btn[aria-pressed="true"] {
   background: var(--color-signal);
-  color: var(--color-primary);
+  color: var(--color-cta-text);
   border-color: var(--color-signal);
 }
 
@@ -145,53 +756,46 @@ a.cta:focus-visible {
   box-shadow: var(--focus-ring);
 }
 
-/* ---- Contact form (fallback for non-JS) ---- */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  max-width: 40rem;
-}
+/* ============================================================
+   Newsletter block
+   ============================================================ */
 
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-}
-
-.form-field label {
-  font-size: 0.875rem;
-  font-weight: var(--weight-semibold);
-  color: var(--color-text);
-}
-
-.form-field input,
-.form-field textarea,
-.form-field select {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--color-text);
-  background: #fff;
+.newsletter {
   border: 1px solid var(--color-border);
   border-radius: var(--btn-radius);
-  padding: 0.625rem 0.75rem;
-  width: 100%;
-  transition: border-color var(--transition-fast);
+  background: var(--color-surface-alt);
+  padding: var(--space-4);
 }
 
-.form-field input:focus,
-.form-field textarea:focus {
-  outline: none;
-  border-color: var(--color-signal);
-  box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2);
+.newsletter__title {
+  font-size: var(--text-h3);
+  margin-bottom: var(--space-1);
 }
 
-/* ---- Essay page ---- */
+.newsletter__sub {
+  font-size: 0.9375rem;
+  color: var(--color-mid);
+  margin-bottom: var(--space-3);
+  max-width: 54ch;
+}
+
+.newsletter__note {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--color-muted);
+  margin-top: var(--space-2);
+}
+
+/* ============================================================
+   Essay page
+   ============================================================ */
+
 .essay__back {
   display: inline-block;
-  color: var(--color-signal);
+  font-family: var(--font-mono);
+  color: var(--color-signal-ink);
   font-size: var(--text-nav);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-medium);
   text-decoration: none;
   margin-block: var(--space-4);
 }
@@ -202,20 +806,23 @@ a.cta:focus-visible {
 
 .essay__header {
   margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .essay__pillar {
   display: inline-block;
-  font-size: var(--text-tag);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
   font-weight: var(--weight-medium);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--color-signal);
+  color: var(--color-signal-ink);
   margin-bottom: var(--space-2);
 }
 
 .essay__title {
-  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-size: clamp(1.625rem, 3.6vw, 2.5rem);
   line-height: var(--leading-tight);
   max-width: var(--essay-width);
   margin-bottom: var(--space-3);
@@ -224,7 +831,8 @@ a.cta:focus-visible {
 .essay__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
   font-size: var(--text-caption);
   color: var(--color-muted);
 }
@@ -237,32 +845,39 @@ a.cta:focus-visible {
   display: flex;
   gap: var(--space-3);
   margin-block: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-nav);
 }
 
-.essay__share a {
-  font-size: var(--text-nav);
-  font-weight: var(--weight-semibold);
-  color: var(--color-signal);
+/* Classed, not matched as a bare `a` — see .link-row__link. */
+.essay__share-link {
+  font-weight: var(--weight-medium);
+  color: var(--color-signal-ink);
   text-decoration: none;
 }
 
-.essay__share a:hover {
+.essay__share-link:hover {
   text-decoration: underline;
 }
 
-/* ---- Quick facts block ---- */
+/* ============================================================
+   Quick facts block
+   ============================================================ */
+
 .quick-facts {
-  background: var(--color-primary);
-  color: var(--color-warm);
-  padding: var(--space-4);
+  background: var(--brand-obsidian);
+  color: var(--brand-sand);
+  font-family: var(--font-mono);
+  padding: var(--space-3);
   border-radius: var(--btn-radius);
+  font-size: var(--text-caption);
 }
 
 .quick-facts dt {
-  font-size: var(--text-caption);
+  font-size: var(--text-micro);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-muted);
+  letter-spacing: var(--tracking-label);
+  color: #8b969b;
   margin-top: var(--space-2);
 }
 
@@ -271,87 +886,127 @@ a.cta:focus-visible {
 }
 
 .quick-facts dd {
-  font-size: var(--text-body);
   margin: 0.25rem 0 0;
-}
-
-/* ---- Hero ---- */
-.hero {
-  background: var(--color-primary);
   color: #fff;
-  padding-block: var(--space-16) var(--space-10);
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
 }
 
-.hero__headline {
-  font-size: var(--text-hero);
-  font-weight: var(--weight-bold);
-  color: #fff;
-  line-height: var(--leading-tight);
-  max-width: 16ch;
-  margin-bottom: var(--space-3);
+/* This block is always on obsidian, in both themes, so links must use the
+   bright signal rather than --color-link (which is tuned for light surfaces). */
+.quick-facts a {
+  color: var(--brand-signal);
 }
 
-.hero__sub {
-  font-family: var(--font-body);
-  font-size: var(--text-h3);
-  font-weight: var(--weight-regular);
-  color: var(--color-warm);
-  margin-bottom: var(--space-8);
-}
+/* ============================================================
+   Pull quote — rendered as a block comment
+   ============================================================ */
 
-/* ---- Audience routing cards ---- */
-.audience-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
-  margin-top: var(--space-8);
-}
-
-@media (max-width: 48rem) {
-  .audience-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-.audience-card {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--btn-radius);
-  padding: var(--space-3);
-}
-
-.audience-card__label {
-  font-size: var(--text-caption);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-warm);
-  margin-bottom: var(--space-1);
-}
-
-/* ---- Pull quote ---- */
 .pull-quote {
-  background: var(--color-primary);
+  background: var(--brand-obsidian);
   color: #fff;
-  padding: var(--space-10) var(--space-6);
-  text-align: center;
+  padding-block: var(--space-10);
 }
 
 .pull-quote__text {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-style: italic;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.1vw, 1.375rem);
+  font-weight: var(--weight-regular);
   line-height: var(--leading-snug);
-  max-width: 40ch;
-  margin-inline: auto;
-  color: var(--color-warm);
+  letter-spacing: -0.02em;
+  max-width: 60ch;
+  color: var(--brand-sand);
+  border-inline-start: 2px solid var(--brand-signal);
+  padding-inline-start: var(--space-3);
 }
 
-/* ---- Footer ---- */
-footer {
-  background: var(--color-primary);
-  color: var(--color-warm);
+.pull-quote__attr {
+  display: block;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: #7f8b90;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+footer.site-footer {
+  background: var(--brand-obsidian);
+  color: #a8b1b5;
+  font-family: var(--font-mono);
   padding-block: var(--space-6);
   font-size: var(--text-caption);
+  border-top: 1px solid #1e2224;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@media (width <= 48rem) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+.site-footer h2 {
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: #7f8b90;
+  font-weight: var(--weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.site-footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.site-footer a {
+  color: #d7dee1;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--brand-signal);
+  text-decoration: underline;
+}
+
+.site-footer__blurb {
+  color: #a8b1b5;
+  max-width: 40ch;
+  font-size: var(--text-caption);
+}
+
+/* Must keep a layout box before it upgrades: the lazy loader watches
+   this element with an IntersectionObserver, and a display:none target
+   has no box to intersect, so the game would never load. min-height
+   gives the observer non-zero area while costing no visible space. */
+pixel-tetris {
+  display: block;
+  min-height: 1px;
+}
+
+.site-footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  justify-content: space-between;
+  padding-top: var(--space-3);
+  margin-top: var(--space-3);
+  border-top: 1px solid #1e2224;
+  color: #7f8b90;
+}
+
+.site-footer__base p {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
 }

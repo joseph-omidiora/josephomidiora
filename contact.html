@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — Joseph Omidiora</title>
   <meta name="description" content="Contact Joseph Omidiora — investor enquiries about Weyz Mobility, founder and Avancier Technologies enquiries, and media requests.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <script>
+    try {
+      var t = localStorage.getItem("jo-theme");
+      document.documentElement.setAttribute(
+        "data-theme",
+        t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) { /* storage blocked — fall back to the media query in CSS */ }
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Contact — Joseph Omidiora">
@@ -12,17 +23,17 @@
   <meta property="og:image" content="https://josephomidiora.com/images/og/contact.png">
   <meta property="og:url" content="https://josephomidiora.com/contact.html">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://josephomidiora.com/contact.html">
   <link rel="alternate" hreflang="en" href="https://josephomidiora.com/contact.html">
   <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/contact.html">
+  <link rel="alternate" type="application/rss+xml" title="Joseph Omidiora — Thinking" href="/feed.xml">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -35,18 +46,37 @@
 
   <main id="main" class="container section">
 
-    <header style="margin-bottom:var(--space-8)">
+    <header class="page-head">
+      <span class="kicker">routes</span>
       <h1>Contact</h1>
-      <p class="text-muted" style="max-width:50ch">
+      <p class="lede">
         Three separate routes for three separate conversations. Find yours below.
       </p>
+
+      <dl class="spec">
+        <div class="spec__row">
+          <dt class="spec__key">direct</dt>
+          <dd class="spec__value"><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></dd>
+        </div>
+        <div class="spec__row">
+          <dt class="spec__key">timezone</dt>
+          <dd class="spec__value">CET — Stockholm</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="spec__key">typical reply</dt>
+          <dd class="spec__value">Within a few working days</dd>
+        </div>
+      </dl>
     </header>
 
     <div class="contact-sections">
 
       <!-- Investor enquiries -->
       <section id="investor" class="contact-section" aria-labelledby="investor-heading">
-        <h2 class="contact-section__heading" id="investor-heading">Discussing Weyz</h2>
+        <div class="section-head">
+          <span class="section-head__index" aria-hidden="true">01</span>
+          <h2 class="section-head__title contact-section__heading" id="investor-heading">Discussing Weyz</h2>
+        </div>
         <p class="contact-section__sub">
           Weyz Mobility is in final preparation for its first campus deployment. Conversations with investors focused on African infrastructure are welcome.
         </p>
@@ -59,7 +89,10 @@
 
       <!-- Founder & Avancier enquiries -->
       <section id="founder" class="contact-section" aria-labelledby="founder-heading">
-        <h2 class="contact-section__heading" id="founder-heading">Working With Avancier</h2>
+        <div class="section-head">
+          <span class="section-head__index" aria-hidden="true">02</span>
+          <h2 class="section-head__title contact-section__heading" id="founder-heading">Working with Avancier</h2>
+        </div>
         <p class="contact-section__sub">
           Avancier works with early-stage founders who need to build something real before they can afford to get it wrong.
         </p>
@@ -72,9 +105,14 @@
 
       <!-- Press & media -->
       <section id="press" class="contact-section" aria-labelledby="press-heading">
-        <h2 class="contact-section__heading" id="press-heading">Media Enquiries</h2>
+        <div class="section-head">
+          <span class="section-head__index" aria-hidden="true">03</span>
+          <h2 class="section-head__title contact-section__heading" id="press-heading">Media enquiries</h2>
+        </div>
         <p class="contact-section__sub">
-          For interview requests, fact-checking, or editorial enquiries.
+          For interview requests, fact-checking, or editorial enquiries. The
+          <a href="/about.html#speaker-bio-heading">speaker bio and press photo</a>
+          are ready to use.
         </p>
         <contact-form
           form-name="press-enquiry"
@@ -86,9 +124,51 @@
     </div>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+      <div class="site-footer__grid">
+        <div>
+          <h2>Joseph Omidiora</h2>
+          <p class="site-footer__blurb">
+            Data engineer and founder, building digital infrastructure
+            that solves African challenges.
+          </p>
+        </div>
+        <div>
+          <h2>Site</h2>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/building.html">Building</a></li>
+            <li><a href="/thinking.html">Thinking</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/uses.html">Uses</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></li>
+            <li><a href="/feed.xml">RSS</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Easter egg. Lazy-loaded by js/easter-egg.js once the footer
+           nears the viewport, so it never touches the critical path. -->
+      <pixel-tetris></pixel-tetris>
+
+      <div class="site-footer__base">
+        <p>© 2026 Joseph Omidiora</p>
+        <p><em>
+          And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.
+        </em>
+      </p>
+      </div>
     </div>
   </footer>
 
@@ -98,7 +178,9 @@
     if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
     if (!customElements.get('contact-form')) customElements.define('contact-form', ContactForm);
   </script>
+  <script type="module" src="js/theme.js"></script>
   <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/easter-egg.js"></script>
 
   <!-- Anchor-scroll from external links (#investor, #founder, #press) -->
   <script type="module">

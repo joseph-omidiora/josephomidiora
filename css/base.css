@@ -1,12 +1,12 @@
 /* ============================================================
    Base — josephomidiora.com
-   CSS reset + typography foundation + font loading.
+   CSS reset + typography foundation + code-like text primitives.
    Assumes tokens.css is loaded first.
-   ============================================================ */
 
-/* --- Font loading --- */
-/* Preconnect hints go in <head>; font-display: swap set in @font-face below */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap");
+   Font files are requested via <link> in each document <head>
+   (not @import) so the request starts in parallel with the CSS
+   rather than after it.
+   ============================================================ */
 
 /* --- Reset --- */
 *,
@@ -19,7 +19,6 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
@@ -35,16 +34,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Typography hierarchy --- */
+/* --- Typography hierarchy ---
+   Every heading is monospace. This is the primary voice of the site. */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
   color: var(--color-heading-display);
+  text-wrap: balance;
 }
 
 h1 {
@@ -54,19 +56,20 @@ h1 {
 
 h2 {
   font-size: var(--text-h2);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-bold);
 }
 
 h3 {
-  font-family: var(--font-body);
   font-size: var(--text-h3);
   font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
   color: var(--color-heading-secondary);
 }
 
 p {
   max-width: 70ch;
   line-height: var(--leading-normal);
+  text-wrap: pretty;
 }
 
 /* Essay prose — wider measure, more leading */
@@ -88,8 +91,9 @@ p {
 
 .prose ul,
 .prose ol {
-  padding-left: var(--space-3);
+  padding-inline-start: var(--space-3);
   margin-top: var(--space-2);
+  max-width: var(--essay-width);
 }
 
 .prose li {
@@ -97,22 +101,119 @@ p {
   line-height: var(--leading-essay);
 }
 
+.prose li::marker {
+  color: var(--color-signal-ink);
+}
+
 .prose blockquote {
-  border-left: 3px solid var(--color-signal);
-  padding-left: var(--space-3);
-  margin: var(--space-4) 0;
-  font-style: italic;
+  border-inline-start: 2px solid var(--color-signal);
+  padding-inline-start: var(--space-3);
+  margin-block: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-body);
+  line-height: var(--leading-normal);
   color: var(--color-slate);
+}
+
+/* --- Code-like text primitives ---
+   The engineering register: inline code, code blocks, keys,
+   comment kickers, and file-path style breadcrumbs. */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-feature-settings: "liga" 0;
+}
+
+:not(pre) > code {
+  font-size: 0.875em;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  padding: 0.1em 0.35em;
+  color: var(--color-signal-ink);
+}
+
+pre {
+  background: var(--color-terminal-bg);
+  color: var(--color-terminal-text);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  padding: var(--space-3);
+  overflow-x: auto;
+  font-size: var(--text-caption);
+  line-height: var(--leading-normal);
+  margin-block: var(--space-4);
+  max-width: var(--essay-width);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+kbd {
+  font-size: 0.8125em;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 0.1em 0.4em;
+}
+
+/* Comment-style section kicker: renders as `// label` */
+.kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--space-1);
+}
+
+.kicker::before {
+  content: "// ";
+  color: var(--color-signal-ink);
+}
+
+/* Kicker sitting on an inverse (dark) surface */
+.kicker--inverse {
+  color: var(--color-terminal-dim);
+}
+
+.kicker--inverse::before {
+  color: var(--brand-signal);
+}
+
+/* Monospace utility — for anything that should read as machine output */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 /* --- Links --- */
 a {
   color: var(--color-link);
   text-decoration: none;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+/* Prose links get a permanent underline — they must be findable in a
+   wall of text without relying on colour alone (WCAG 1.4.1). */
+.prose a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-signal);
 }
 
 /* --- Focus management (accessibility) --- */
@@ -154,7 +255,7 @@ button {
   padding-inline: var(--space-3);
 }
 
-@media (min-width: 48rem) {
+@media (width >= 48rem) {
   .container {
     padding-inline: var(--space-6);
   }
@@ -164,19 +265,26 @@ button {
   padding-block: var(--section-padding-mobile);
 }
 
-@media (min-width: 64rem) {
+@media (width >= 64rem) {
   .section {
     padding-block: var(--section-padding-desktop);
   }
+}
+
+/* Sections separated by a hairline rather than a colour change —
+   closer to a spec sheet than a marketing page. */
+.section--ruled {
+  border-top: 1px solid var(--color-border);
 }
 
 /* --- Skip link (accessibility) --- */
 .skip-link {
   position: absolute;
   top: -100%;
-  left: var(--space-2);
+  inset-inline-start: var(--space-2);
   background: var(--color-signal);
-  color: var(--color-primary);
+  color: var(--brand-obsidian);
+  font-family: var(--font-mono);
   padding: var(--space-1) var(--space-2);
   font-weight: var(--weight-semibold);
   z-index: 9999;
@@ -195,21 +303,20 @@ button {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
 
-.text-signal {
-  color: var(--color-signal);
-}
-
-.text-warm {
-  color: var(--color-warm);
-}
-
 .text-muted {
   color: var(--color-muted);
+}
+
+.lede {
+  font-size: var(--text-h3);
+  line-height: var(--leading-snug);
+  color: var(--color-mid);
+  max-width: 52ch;
 }
 
 /* --- Horizontal rule --- */

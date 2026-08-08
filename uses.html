@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-alt-href="/fr/uses.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uses — Joseph Omidiora</title>
+  <meta name="description" content="The hardware, software and data tooling Joseph Omidiora builds with — and how this site itself is built.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <script>
+    try {
+      var t = localStorage.getItem("jo-theme");
+      document.documentElement.setAttribute(
+        "data-theme",
+        t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) { /* storage blocked — fall back to the media query in CSS */ }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Uses — Joseph Omidiora">
+  <meta property="og:description" content="The tools, stack and machine behind the work.">
+  <meta property="og:image" content="https://josephomidiora.com/images/og/home.png">
+  <meta property="og:url" content="https://josephomidiora.com/uses.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://josephomidiora.com/uses.html">
+  <link rel="alternate" hreflang="en" href="https://josephomidiora.com/uses.html">
+  <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/uses.html">
+  <link rel="alternate" type="application/rss+xml" title="Joseph Omidiora — Thinking" href="/feed.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page--uses">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <site-nav current-page="/uses.html" lang="en" en-path="/uses.html" fr-path="/fr/uses.html"></site-nav>
+
+  <main id="main" class="container section">
+
+    <header class="page-head">
+      <span class="kicker">tooling</span>
+      <h1>Uses</h1>
+      <p class="lede">
+        What I actually work in. Listed because the question comes up often
+        enough, and because a tool list is an honest description of how someone
+        spends their day.
+      </p>
+    </header>
+
+    <div class="uses-grid">
+
+      <section class="uses-group" aria-labelledby="uses-data-heading">
+        <h2 id="uses-data-heading">Data engineering</h2>
+        <dl>
+          <dt>Python</dt>
+          <dd>Ingestion, transformation, everything glue.</dd>
+
+          <dt>SQL + dbt</dt>
+          <dd>Models live in version control or they don't exist.</dd>
+
+          <dt>Airflow</dt>
+          <dd>Orchestration. Boring on purpose.</dd>
+
+          <dt>PostgreSQL</dt>
+          <dd>Default store until something proves it can't be.</dd>
+
+          <dt>DuckDB</dt>
+          <dd>Local analysis without standing up infrastructure first.</dd>
+        </dl>
+      </section>
+
+      <section class="uses-group" aria-labelledby="uses-platform-heading">
+        <h2 id="uses-platform-heading">Platform</h2>
+        <dl>
+          <dt>Docker</dt>
+          <dd>One environment, reproducible on any machine.</dd>
+
+          <dt>Terraform</dt>
+          <dd>Infrastructure that can be read in a diff.</dd>
+
+          <dt>AWS</dt>
+          <dd>Primary cloud for Weyz workloads.</dd>
+
+          <dt>GitHub Actions</dt>
+          <dd>CI, quality gates, scheduled jobs.</dd>
+        </dl>
+      </section>
+
+      <section class="uses-group" aria-labelledby="uses-desk-heading">
+        <h2 id="uses-desk-heading">Desk</h2>
+        <dl>
+          <dt>MacBook Pro</dt>
+          <dd>The whole studio, carried between two continents.</dd>
+
+          <dt>VS Code</dt>
+          <dd>Editor. JetBrains Mono at 13px, one theme, no ceremony.</dd>
+
+          <dt>iTerm2 + zsh</dt>
+          <dd>Where most of the work actually happens.</dd>
+
+          <dt>Obsidian</dt>
+          <dd>Essays start here as plain markdown before they are anything else.</dd>
+
+          <dt>Figma</dt>
+          <dd>Interface thinking, wallet flows, hardware placement sketches.</dd>
+        </dl>
+      </section>
+    </div>
+
+    <section class="section" aria-labelledby="uses-note-heading">
+      <div class="newsletter">
+        <span class="kicker">note</span>
+        <h2 class="newsletter__title" id="uses-note-heading">Nothing here is a recommendation</h2>
+        <p class="newsletter__sub">
+              </p>
+        <p class="newsletter__note">
+          Building something similar? <a href="/contact.html#founder">Avancier does this work →</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <h2>Joseph Omidiora</h2>
+          <p class="site-footer__blurb">
+            Data engineer and founder, building digital infrastructure
+            that solves African challenges.
+          </p>
+        </div>
+        <div>
+          <h2>Site</h2>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/building.html">Building</a></li>
+            <li><a href="/thinking.html">Thinking</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/uses.html">Uses</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></li>
+            <li><a href="/feed.xml">RSS</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Easter egg. Lazy-loaded by js/easter-egg.js once the footer
+           nears the viewport, so it never touches the critical path. -->
+      <pixel-tetris></pixel-tetris>
+
+      <div class="site-footer__base">
+        <p>© 2026 Joseph Omidiora</p>
+        <p><em>
+          And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.
+        </em>
+      </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { SiteNav } from './components/site-nav.js';
+    if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
+  </script>
+  <script type="module" src="js/theme.js"></script>
+  <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/easter-egg.js"></script>
+</body>
+</html>

@@ -129,3 +129,37 @@
 - [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
 - [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
 - [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+
+## Open Questions
+
+<!--
+  MANDATORY: Every open question MUST be resolved or explicitly deferred (with a recorded
+  decision) before implementation begins. A spec with unresolved open questions blocks the
+  plan phase. Mark each item [RESOLVED: answer] or [DEFERRED: reason + owner] before sign-off.
+-->
+
+- [ ] OQ-001: [Question that must be answered before the design can be finalised]
+- [ ] OQ-002: [Dependency or constraint that is currently unknown]
+
+## Acceptance Criteria
+
+### Accessibility (axe-core + manual)
+
+| Criterion | How to verify | Pass condition |
+|---|---|---|
+| Zero axe-core violations | Run axe-core in Vitest against every new component | 0 violations |
+| Keyboard-only operable | Tab through all interactive elements manually | All reachable, no traps |
+| Screen-reader tested | VoiceOver/NVDA on all interactive components | Correct announcements |
+| Color contrast | Evaluate with browser devtools or Colour Contrast Analyser | ≥ 4.5:1 normal text, ≥ 3:1 large/UI |
+| Reduced motion respected | Toggle `prefers-reduced-motion` in OS settings | Animations absent or instant |
+
+### Performance budget (this spec)
+
+| Asset / metric | Budget | Measurement tool |
+|---|---|---|
+| LCP | ≤ 2.5 s (throttled 4G) | Lighthouse CI |
+| CLS | < 0.1 | Lighthouse CI |
+| INP | ≤ 200 ms | Lighthouse CI |
+| New images introduced | ≤ 100 KB each (WebP/AVIF) | CI asset-size check |
+| JS added by this feature | [specify KB or "0 — no new JS"] | esbuild bundle analysis |
+| CSS added by this feature | [specify KB or "0 — no new CSS"] | esbuild bundle analysis |

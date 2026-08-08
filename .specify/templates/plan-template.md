@@ -38,9 +38,20 @@
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design. Non-compliance blocks merge.*
 
-[Gates determined based on constitution file]
+For each principle, check the box and add a one-line rationale or "N/A — [reason]".
+
+- [ ] **I. Performance-First** — LCP ≤ 2.5 s, CLS < 0.1, INP ≤ 200 ms; JS ≤ 50 KB, CSS ≤ 20 KB, fonts ≤ 60 KB WOFF2; images ≤ 100 KB each; Lighthouse CI on ≥ 2 pages. _Rationale:_
+- [ ] **II. Accessibility** — WCAG 2.1 AA minimum; axe-core 0 violations; keyboard-only operable; screen-reader tested; `prefers-reduced-motion` respected. _Rationale:_
+- [ ] **III. Component-Driven Architecture** — each UI pattern is a Web Component with documented public API; all themeable values via CSS custom properties from `tokens.css`; new tokens justified. _Rationale:_
+- [ ] **IV. Test-First Development** — failing test written and approved before implementation; coverage ≥ 80 %; axe-core in test suite. _Rationale:_
+- [ ] **V. Semantic HTML & Progressive Enhancement** — works without JS and without CSS; no `<div>`/`<span>` where semantic element applies; no inline styles. _Rationale:_
+- [ ] **VI. Simplicity (YAGNI)** — no new dependency/abstraction without a concrete present problem; bundle size, license, security audited. _Rationale:_
+- [ ] **VII. Observability & Maintainability** — every async op has an error state; component doc block includes offline behaviour; ADR filed if applicable; CHANGELOG updated. _Rationale:_
+- [ ] **VIII. Security Baseline** — CSP declared/reviewed; SRI on CDN assets; no secrets committed; `npm audit` passes; `textContent` preferred over `innerHTML`. _Rationale:_
+- [ ] **IX. Internationalisation** — all strings in locale JSON; `lang` attribute dynamic; `Intl` API for formatting; logical CSS properties only; i18n coverage gate passes. _Rationale:_
+- [ ] **X. Privacy & Compliance** — no tracking without consent ADR; `robots.txt` + `sitemap.xml` updated if URLs changed; only necessary data collected. _Rationale:_
 
 ## Project Structure
 

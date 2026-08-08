@@ -5,6 +5,7 @@ node_modules/
 thinking/
 fr/
 sitemap.xml
+feed.xml
 content/essays-manifest.json
 
 # macOS

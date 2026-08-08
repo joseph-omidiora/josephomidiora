@@ -4,9 +4,13 @@ test.describe("US1 — Investor journey", () => {
   test("reads thesis, navigates to Building, submits investor enquiry", async ({ page }) => {
     await page.goto("/");
 
-    /* Hero headline is the positioning statement */
+    /* Hero headline is the positioning statement.
+       This asserts the exact copy on purpose — the headline is the one
+       sentence the whole page is built around, so a silent change to it
+       should fail a test rather than ship unnoticed. Update this string
+       deliberately whenever the positioning changes. */
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "I build the payment infrastructure African transport runs on."
+      "I build stuff that tackles real problems."
     );
 
     /* Investor routing card present and linked correctly */

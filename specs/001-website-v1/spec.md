@@ -232,7 +232,6 @@ A visitor opens josephomidiora.com on a smartphone (375px–430px viewport). Nav
 ## Assumptions
 
 - Joseph will supply all written content (English copy, essay body text, company stage descriptions) by Day 3 of the build.
-- French translations will be provided by Joseph or a named translator by Day 9 of the build.
 - A professional documentary-style photo of Joseph will be available by Day 3.
 - The domain josephomidiora.com is registered and Joseph has DNS access. [OPEN QUESTION #7]
 - A Netlify account exists or will be created before Day 1 of the build. [OPEN QUESTION #6]

@@ -3,8 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joseph Omidiora — Building the Payment Infrastructure African Transport Runs On</title>
-  <meta name="description" content="Joseph Omidiora is a data engineer and founder of Weyz Mobility and Avancier Technologies, building the payment infrastructure African transport runs on.">
+  <title>Joseph Omidiora — Building the Digital Infrastructure African Transport Runs On</title>
+  <meta name="description" content="Joseph Omidiora is a data engineer and founder of Weyz Mobility and Avancier Technologies, providing solutions leveraging technology.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <!-- Theme: applied before first paint so the page never flashes the wrong surface -->
+  <script>
+    try {
+      var t = localStorage.getItem("jo-theme");
+      document.documentElement.setAttribute(
+        "data-theme",
+        t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) { /* storage blocked — fall back to the media query in CSS */ }
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Joseph Omidiora">
@@ -12,15 +24,18 @@
   <meta property="og:image" content="https://josephomidiora.com/images/og/home.png">
   <meta property="og:url" content="https://josephomidiora.com/">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Canonical + hreflang -->
+  <!-- Canonical + hreflang + feed -->
   <link rel="canonical" href="https://josephomidiora.com/">
   <link rel="alternate" hreflang="en" href="https://josephomidiora.com/">
   <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/">
+  <link rel="alternate" type="application/rss+xml" title="Joseph Omidiora — Thinking" href="/feed.xml">
 
-  <!-- Fonts -->
+  <!-- Fonts — JetBrains Mono is the primary voice; IBM Plex Sans carries prose -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
@@ -36,7 +51,7 @@
     "name": "Joseph Omidiora",
     "url": "https://josephomidiora.com",
     "jobTitle": "Founder & Data Engineer",
-    "description": "Building the payment infrastructure African transport runs on.",
+    "description": "Building the digital infrastructure African transport runs on.",
     "sameAs": [
       "https://www.linkedin.com/in/josephomidiora",
       "https://twitter.com/josephomidiora"
@@ -55,115 +70,454 @@
 
   <main id="main">
 
-    <!-- Hero -->
+    <!-- ── Hero ─────────────────────────────────────────────────── -->
     <section class="hero" aria-labelledby="hero-headline">
-      <div class="container">
-        <h1 class="hero__headline" id="hero-headline">
-          I build the payment infrastructure African transport runs on.
-        </h1>
-        <p class="hero__sub">Founder. Data Engineer. Nigerian in Stockholm.</p>
+      <!-- Decorative particle field. Renders nothing without WebGL2 or JS;
+           the hero is designed to read correctly either way. -->
+      <hero-field></hero-field>
 
-        <!-- Audience routing cards -->
+      <div class="container">
+        <div class="hero__terminal">
+          <p class="hero__prompt">
+            <span class="hero__prompt-user">josephomidiora</span>:<span class="hero__prompt-path">~</span>$ whoami
+          </p>
+
+          <h1 class="hero__headline" id="hero-headline">
+            I build stuff that tackles real problems.<span class="hero__cursor" aria-hidden="true"></span>
+          </h1>
+
+          <p class="hero__sub">
+            Founder. Data engineer. Proudly African. Two companies operating —
+            one putting transaction data on Nigerian bus routes, one making sure
+            early founders build the right system the first time.
+          </p>
+
+          <p class="hero__meta">
+            <span>location: <b>Stockholm, SE</b></span>
+            <span>origin: <b>Ile-Ife, NG</b></span>
+            <span>status: <b>shipping</b></span>
+          </p>
+        </div>
+
+        <!-- Audience routing -->
         <nav class="audience-cards" aria-label="Find what you're looking for">
           <div class="audience-card">
-            <p class="audience-card__label">For Investors</p>
+            <p class="audience-card__label">For investors</p>
             <cta-button label="Explore Weyz" href="/building.html" arrow></cta-button>
           </div>
           <div class="audience-card">
-            <p class="audience-card__label">For Founders</p>
-            <cta-button label="Read the Essays" href="/thinking.html" arrow></cta-button>
+            <p class="audience-card__label">For founders</p>
+            <cta-button label="Read the essays" href="/thinking.html" arrow></cta-button>
           </div>
           <div class="audience-card">
-            <p class="audience-card__label">For Press</p>
-            <cta-button label="Media Enquiry" href="/contact.html#press" arrow></cta-button>
+            <p class="audience-card__label">For press</p>
+            <cta-button label="Media enquiry" href="/contact.html#press" arrow></cta-button>
           </div>
         </nav>
       </div>
     </section>
 
-    <!-- What I Build -->
-    <section class="section" aria-labelledby="what-i-build-heading">
+    <!-- ── Instrument panel ─────────────────────────────────────── -->
+    <section class="section" aria-label="Key figures">
       <div class="container">
-        <h2 id="what-i-build-heading">What I Build</h2>
+        <dl class="stat-grid">
+          <div class="stat">
+            <dt class="stat__label">Companies operating</dt>
+            <dd class="stat__value">02</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">Campus pilots signed</dt>
+            <dd class="stat__value">01</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">Project Built</dt>
+            <dd class="stat__value">05</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">Current latitude</dt>
+            <dd class="stat__value">59.3°N</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── 01 What I build ──────────────────────────────────────── -->
+    <section class="section section--ruled" aria-labelledby="what-i-build-heading">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__index" aria-hidden="true">01</span>
+          <h2 class="section-head__title" id="what-i-build-heading">What I build</h2>
+          <span class="section-head__aside"><a href="/building.html">all projects →</a></span>
+        </div>
+
         <div class="what-i-build">
-          <div>
-            <h3>Weyz Mobility</h3>
-            <p>Payment infrastructure for public transport in Africa. We're building the wallet and card-tap system that puts real transaction data on Nigeria's bus and ferry networks — starting on campus, scaling to city routes.</p>
-            <a href="/building.html#weyz" class="cta cta--secondary" style="margin-top:1.5rem">Learn more →</a>
-          </div>
-          <div>
-            <h3>Avancier Technologies</h3>
-            <p>Technical consulting for non-technical founders. We help early-stage African and diaspora builders architect the right systems before they hire their first engineering team.</p>
-            <a href="/building.html#avancier" class="cta cta--secondary" style="margin-top:1.5rem">Learn more →</a>
-          </div>
+          <article class="project">
+            <div class="project__head">
+              <h3 class="project__name">Weyz Mobility</h3>
+              <span class="status status--building">in development</span>
+            </div>
+            <p class="project__tagline">Payment infrastructure for public transport in Africa.</p>
+            <p class="project__body">
+              The wallet and card-tap layer that puts real transaction data on
+              Nigeria's bus and ferry networks — starting on campus, scaling to
+              city routes. Passengers tap to board; operators see revenue in
+              real time; routes that were never measured start producing data.
+            </p>
+            <ul class="chips">
+              <li class="chip">fintech</li>
+              <li class="chip">mobility</li>
+              <li class="chip">hardware</li>
+              <li class="chip">nigeria</li>
+            </ul>
+            <div class="project__footer">
+              <a href="/building.html#weyz" class="link-cmd">Read the thesis</a>
+              <a href="/contact.html#investor" class="link-cmd">Investor enquiries</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project__head">
+              <h3 class="project__name">Avancier Technologies</h3>
+              <span class="status status--live">operating</span>
+            </div>
+            <p class="project__tagline">Technical consulting for non-technical founders.</p>
+            <p class="project__body">
+              Architecture reviews, vendor selection, product specification and
+              hiring briefs for early-stage African and diaspora builders — so
+              the decisions made in the first eighteen months don't constrain
+              the company for the next ten years.
+            </p>
+            <ul class="chips">
+              <li class="chip">architecture</li>
+              <li class="chip">advisory</li>
+              <li class="chip">pre-seed</li>
+            </ul>
+            <div class="project__footer">
+              <a href="/building.html#avancier" class="link-cmd">What we do</a>
+              <a href="/contact.html#founder" class="link-cmd">Work with us</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Latest Thinking -->
-    <section class="section" aria-labelledby="latest-thinking-heading" style="background:var(--color-base)">
+    <!-- ── 02 Currently / 03 Elsewhere ──────────────────────────── -->
+    <section class="section section--ruled" aria-labelledby="currently-heading">
       <div class="container">
-        <h2 id="latest-thinking-heading">Latest Thinking</h2>
+        <div class="split">
+
+          <div>
+            <div class="section-head">
+              <span class="section-head__index" aria-hidden="true">02</span>
+              <h2 class="section-head__title" id="currently-heading">Currently</h2>
+              <span class="section-head__aside"><a href="/now.html">full /now →</a></span>
+            </div>
+
+            <ul class="log">
+              <li class="log__item">
+                <span class="log__date">Building</span>
+                <div>
+                  <p class="log__title">Weyz wallet + card-tap architecture</p>
+                  <p class="log__body">Reader hardware and transaction reconciliation ahead of the first campus deployment with Federal University Akure.</p>
+                </div>
+              </li>
+              <li class="log__item">
+                <span class="log__date">Advising</span>
+                <div>
+                  <p class="log__title">Pre-seed founders through Avancier</p>
+                  <p class="log__body">Fintech, logistics and mobility teams deciding what to build before they hire their first engineer.</p>
+                </div>
+              </li>
+              <li class="log__item">
+                <span class="log__date">Writing</span>
+                <div>
+                  <p class="log__title">The Backbone Thesis</p>
+                  <p class="log__body">An essay series on why infrastructure — not applications — is the constraint on African financial systems.</p>
+                </div>
+              </li>
+              <li class="log__item">
+                <span class="log__date">Reading</span>
+                <div>
+                  <p class="log__title">Payment rails, ledgers and settlement</p>
+                  <p class="log__body">Working through how other markets solved offline-first transit payments before mobile money existed.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="section-head">
+              <span class="section-head__index" aria-hidden="true">03</span>
+              <h2 class="section-head__title" id="elsewhere-heading">Elsewhere</h2>
+            </div>
+
+            <ul class="link-rows" aria-labelledby="elsewhere-heading">
+              <li class="link-row">
+                <a class="link-row__link" href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">
+                  <span class="link-row__name">LinkedIn</span>
+                  <span class="link-row__meta">/josephomidiora</span>
+                </a>
+              </li>
+              <li class="link-row">
+                <a class="link-row__link" href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">
+                  <span class="link-row__name">X / Twitter</span>
+                  <span class="link-row__meta">@josephomidiora</span>
+                </a>
+              </li>
+              <li class="link-row">
+                <a class="link-row__link" href="mailto:joseph@weyz.app">
+                  <span class="link-row__name">Email</span>
+                  <span class="link-row__meta">joseph@weyz.app</span>
+                </a>
+              </li>
+              <li class="link-row">
+                <a class="link-row__link" href="/feed.xml">
+                  <span class="link-row__name">RSS</span>
+                  <span class="link-row__meta">/feed.xml</span>
+                </a>
+              </li>
+              <li class="link-row">
+                <a class="link-row__link" href="/about.html#speaker-bio-heading">
+                  <span class="link-row__name">Speaker bio + press kit</span>
+                  <span class="link-row__meta">about</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 04 Latest thinking ───────────────────────────────────── -->
+    <section class="section section--ruled" aria-labelledby="latest-thinking-heading">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-head__index" aria-hidden="true">04</span>
+          <h2 class="section-head__title" id="latest-thinking-heading">Latest thinking</h2>
+          <span class="section-head__aside"><a href="/thinking.html">all essays →</a> <a href="/feed.xml">rss</a></span>
+        </div>
+
         <div class="latest-thinking__grid" id="latest-essays">
-          <!-- Populated by build script via essays-manifest.json -->
-          <!-- Fallback if JS disabled or manifest not yet generated -->
+          <!-- Populated from content/essays-manifest.json.
+               The link below is the no-JS / fetch-failure fallback. -->
           <p><a href="/thinking.html">Read all essays →</a></p>
         </div>
       </div>
     </section>
 
-    <!-- The Thesis -->
-    <section class="pull-quote" aria-label="The thesis">
+    <!-- ── 05 Stack ─────────────────────────────────────────────── -->
+    <section class="section section--ruled" aria-labelledby="stack-heading">
       <div class="container">
+        <div class="section-head">
+          <span class="section-head__index" aria-hidden="true">05</span>
+          <h2 class="section-head__title" id="stack-heading">Stack</h2>
+          <span class="section-head__aside"><a href="/uses.html">full /uses →</a></span>
+        </div>
+
+        <div class="stack-grid">
+          <div class="stack-group">
+            <h3 class="stack-group__name">Data</h3>
+            <ul>
+              <li>Python</li>
+              <li>SQL / dbt</li>
+              <li>Airflow</li>
+              <li>PostgreSQL</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group__name">Platform</h3>
+            <ul>
+              <li>Docker</li>
+              <li>Terraform</li>
+              <li>AWS</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group__name">This site</h3>
+            <ul>
+              <li>Vanilla HTML / CSS / JS</li>
+              <li>Web Components</li>
+              <li>Decap CMS</li>
+              <li>Netlify</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group__name">Desk</h3>
+            <ul>
+              <li>VS Code</li>
+              <li>iTerm2 + zsh</li>
+              <li>Obsidian</li>
+              <li>Figma</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The thesis ───────────────────────────────────────────── -->
+    <section class="pull-quote" aria-labelledby="thesis-heading">
+      <div class="container">
+        <h2 class="kicker kicker--inverse" id="thesis-heading">The thesis</h2>
         <blockquote class="pull-quote__text">
-          "The bus is the bank. Every fare is a transaction. Every route is a data stream. The infrastructure that moves people is the same infrastructure that moves money — and right now, it moves neither well."
+          The bus is the bank. Every fare is a transaction. Every route is a data
+          stream. The infrastructure that moves people is the same infrastructure
+          that moves money — and right now, it moves neither well.
+          <span class="pull-quote__attr">— from “The Bus Is the Bank”</span>
         </blockquote>
+      </div>
+    </section>
+
+    <!-- ── 06 Dispatch ──────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="dispatch-heading">
+      <div class="container">
+        <div class="newsletter">
+          <span class="kicker">dispatch</span>
+          <h2 class="newsletter__title" id="dispatch-heading">Infrastructure notes, occasionally</h2>
+          <p class="newsletter__sub">
+            New essays plus what I learned building Weyz that month. No cadence
+            promises, no growth hacks — it goes out when there's something worth
+            sending.
+          </p>
+          <newsletter-form submit-label="Subscribe"></newsletter-form>
+          <p class="newsletter__note">
+            Or take the <a href="/feed.xml">RSS feed</a> — no email required.
+          </p>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 Joseph Omidiora. Built without a framework.</p>
+      <div class="site-footer__grid">
+        <div>
+          <h2>Joseph Omidiora</h2>
+          <p class="site-footer__blurb">
+            Data engineer and founder, building digital infrastructure
+            that solves African challenges.
+          </p>
+        </div>
+        <div>
+          <h2>Site</h2>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/building.html">Building</a></li>
+            <li><a href="/thinking.html">Thinking</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/uses.html">Uses</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></li>
+            <li><a href="/feed.xml">RSS</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Easter egg. Lazy-loaded by js/easter-egg.js once the footer
+           nears the viewport, so it never touches the critical path. -->
+      <pixel-tetris></pixel-tetris>
+
+      <div class="site-footer__base">
+        <p>© 2026 Joseph Omidiora</p>
+        <p><em>
+          And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.
+        </em>
+      </p>
+      </div>
     </div>
   </footer>
+
+  <!--
+    Netlify form registration.
+    Netlify's build-time scanner only sees forms in the static HTML, and every
+    real form on this site lives inside Shadow DOM. These hidden stubs declare
+    the four form names and their fields so submissions from the components are
+    accepted. Keep the name/field lists in sync with components/contact-form.js
+    and components/newsletter-form.js.
+  -->
+  <form name="newsletter" data-netlify="true" hidden>
+    <input type="email" name="email">
+  </form>
+  <form name="investor-enquiry" data-netlify="true" hidden>
+    <input type="text" name="name">
+    <input type="text" name="organisation">
+    <input type="text" name="role">
+    <input type="email" name="email">
+    <textarea name="message"></textarea>
+  </form>
+  <form name="founder-enquiry" data-netlify="true" hidden>
+    <input type="text" name="name">
+    <input type="text" name="company">
+    <input type="email" name="email">
+    <textarea name="what-you-are-building"></textarea>
+  </form>
+  <form name="press-enquiry" data-netlify="true" hidden>
+    <input type="text" name="name">
+    <input type="text" name="publication">
+    <input type="email" name="email">
+    <textarea name="nature-of-enquiry"></textarea>
+  </form>
 
   <!-- Web Components -->
   <script type="module">
     import { SiteNav } from './components/site-nav.js';
     import { CtaButton } from './components/cta-button.js';
     import { EssayCard } from './components/essay-card.js';
+    import { NewsletterForm } from './components/newsletter-form.js';
+    import { HeroField } from './components/hero-field.js';
     if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
     if (!customElements.get('cta-button')) customElements.define('cta-button', CtaButton);
     if (!customElements.get('essay-card')) customElements.define('essay-card', EssayCard);
+    if (!customElements.get('newsletter-form')) customElements.define('newsletter-form', NewsletterForm);
+    if (!customElements.get('hero-field')) customElements.define('hero-field', HeroField);
   </script>
 
   <!-- Latest essays: load from manifest -->
   <script type="module" defer>
     async function loadLatestEssays() {
+      const container = document.getElementById('latest-essays');
+      if (!container) { return; }
+
       try {
         const res = await fetch('/content/essays-manifest.json');
-        if (!res.ok) { return; }
-        const essays = await res.json();
-        const container = document.getElementById('latest-essays');
-        if (!container || essays.length === 0) { return; }
+        if (!res.ok) { throw new Error(`manifest ${res.status}`); }
 
-        container.innerHTML = essays.slice(0, 3).map((e) => `
-          <essay-card
-            title="${e.title.replace(/"/g, '&quot;')}"
-            slug="${e.slug}"
-            date="${e.date}"
-            pillar="${e.pillar}"
-            description="${(e.description ?? '').replace(/"/g, '&quot;')}"
-          ></essay-card>
-        `).join('');
-      } catch { /* manifest not yet generated — fallback link stays */ }
+        const essays = await res.json();
+        if (essays.length === 0) { return; }
+
+        container.replaceChildren(...essays.slice(0, 3).map((e) => {
+          /* Attributes are set as properties, never interpolated into an
+             HTML string — the manifest is build-generated but this keeps
+             the injection path safe by construction. */
+          const card = document.createElement('essay-card');
+          card.setAttribute('title', e.title ?? '');
+          card.setAttribute('slug', e.slug ?? '');
+          card.setAttribute('date', e.date ?? '');
+          card.setAttribute('pillar', e.pillar ?? '');
+          card.setAttribute('description', e.description ?? '');
+          if (e.readTime) { card.setAttribute('read-time', String(e.readTime)); }
+          return card;
+        }));
+      } catch {
+        /* Manifest unreachable — the static "Read all essays" link stays. */
+      }
     }
     loadLatestEssays();
   </script>
 
-  <!-- Language toggle -->
+  <script type="module" src="js/theme.js"></script>
   <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/easter-egg.js"></script>
 </body>
 </html>

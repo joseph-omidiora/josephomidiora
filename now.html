@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-alt-href="/fr/now.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Now — Joseph Omidiora</title>
+  <meta name="description" content="What Joseph Omidiora is working on right now: Weyz Mobility's first campus deployment, Avancier advisory work, writing, and reading.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <script>
+    try {
+      var t = localStorage.getItem("jo-theme");
+      document.documentElement.setAttribute(
+        "data-theme",
+        t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) { /* storage blocked — fall back to the media query in CSS */ }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Now — Joseph Omidiora">
+  <meta property="og:description" content="What I'm working on at this moment, and what I'm deliberately not.">
+  <meta property="og:image" content="https://josephomidiora.com/images/og/home.png">
+  <meta property="og:url" content="https://josephomidiora.com/now.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://josephomidiora.com/now.html">
+  <link rel="alternate" hreflang="en" href="https://josephomidiora.com/now.html">
+  <link rel="alternate" hreflang="fr" href="https://josephomidiora.com/fr/now.html">
+  <link rel="alternate" type="application/rss+xml" title="Joseph Omidiora — Thinking" href="/feed.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page--now">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <site-nav current-page="/now.html" lang="en" en-path="/now.html" fr-path="/fr/now.html"></site-nav>
+
+  <main id="main" class="container section">
+
+    <header class="page-head">
+      <span class="kicker">status</span>
+      <h1>Now</h1>
+      <p class="lede">
+        A single page describing what has my attention at this moment — the
+        <a href="https://nownownow.com/about" rel="noopener" target="_blank">/now page</a>
+        convention. If we spoke six months ago, this is what changed.
+      </p>
+    </header>
+
+    <div class="now__layout">
+
+      <div>
+        <!-- Building -->
+        <section class="now__section" aria-labelledby="now-building-heading">
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">01</span>
+            <h2 class="section-head__title" id="now-building-heading">Building</h2>
+          </div>
+
+          <ul class="log">
+            <li class="log__item">
+              <span class="log__date">Weyz</span>
+              <div>
+                <p class="log__title">Campus deployment with FUTA</p>
+                <p class="log__body">
+                  An MoU is signed with Federal University Akure as the first
+                  institutional deployment partner. The work in front of me is
+                  the card-reader hardware, the transaction reconciliation
+                  backend, and a wallet a student will actually top up twice.
+                </p>
+              </div>
+            </li>
+            <li class="log__item">
+              <span class="log__date">Weyz</span>
+              <div>
+                <p class="log__title">Offline-first payment path</p>
+                <p class="log__body">
+                  A bus cannot depend on connectivity at the moment of payment.
+                  Most of the interesting engineering is in what happens between
+                  the tap and the settlement, when the network is not there.
+                </p>
+              </div>
+            </li>
+            <li class="log__item">
+              <span class="log__date">Avancier</span>
+              <div>
+                <p class="log__title">Advisory engagements</p>
+                <p class="log__body">
+                  Working with a small number of pre-seed founders in fintech,
+                  logistics and mobility on architecture reviews and first
+                  engineering hires. Capacity is deliberately limited.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Writing -->
+        <section class="now__section" aria-labelledby="now-writing-heading">
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">02</span>
+            <h2 class="section-head__title" id="now-writing-heading">Writing</h2>
+            <span class="section-head__aside"><a href="/thinking.html">all essays →</a></span>
+          </div>
+
+          <ul class="log">
+            <li class="log__item">
+              <span class="log__date">Series</span>
+              <div>
+                <p class="log__title">The Backbone Thesis</p>
+                <p class="log__body">
+                  Why the constraint on African financial systems is
+                  infrastructure rather than applications — and what that
+                  implies about where a founder should start.
+                </p>
+              </div>
+            </li>
+            <li class="log__item">
+              <span class="log__date">Series</span>
+              <div>
+                <p class="log__title">Founder Dispatches</p>
+                <p class="log__body">
+                  Field notes from building in two markets at once, written
+                  while the outcome is still unknown rather than afterwards.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Learning -->
+        <section class="now__section" aria-labelledby="now-learning-heading">
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">03</span>
+            <h2 class="section-head__title" id="now-learning-heading">Learning</h2>
+          </div>
+
+          <ul class="log">
+            <li class="log__item">
+              <span class="log__date">Reading</span>
+              <div>
+                <p class="log__title">Ledgers, rails and settlement</p>
+                <p class="log__body">
+                  How other markets solved offline transit payments before
+                  mobile money existed, and which of those constraints still
+                  apply in Lagos today.
+                </p>
+              </div>
+            </li>
+            <li class="log__item">
+              <span class="log__date">Practising</span>
+              <div>
+                <p class="log__title">Writing in public, earlier</p>
+                <p class="log__body">
+                  Publishing the reasoning before the result is in. It is
+                  uncomfortable and it is the fastest correction mechanism
+                  I have found.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Not doing -->
+        <section class="now__section" aria-labelledby="now-not-heading">
+          <div class="section-head">
+            <span class="section-head__index" aria-hidden="true">04</span>
+            <h2 class="section-head__title" id="now-not-heading">Not doing</h2>
+          </div>
+
+          <div class="prose">
+            <p>
+              A /now page is only useful if it also says what has been put down.
+              I am not taking on new consulting clients beyond current capacity,
+              not speaking at events that require long-haul travel this quarter,
+              and not starting a third company. The list exists because saying no
+              to good things is the only way the first two get finished.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside aria-labelledby="now-facts-heading">
+        <h2 class="kicker" id="now-facts-heading">Snapshot</h2>
+
+        <dl class="quick-facts">
+          <dt>Based in</dt>
+          <dd>Stockholm, Sweden</dd>
+
+          <dt>Focus</dt>
+          <dd>Weyz — campus pilot</dd>
+
+          <dt>Open to</dt>
+          <dd>Investor conversations</dd>
+          <dd>Press &amp; interviews</dd>
+
+          <dt>Closed to</dt>
+          <dd>New consulting clients</dd>
+
+          <dt>Best route</dt>
+          <dd>joseph@weyz.app</dd>
+        </dl>
+
+        <p class="now__aside-cta">
+          <a href="/contact.html">Start a conversation →</a>
+        </p>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <h2>Joseph Omidiora</h2>
+          <p class="site-footer__blurb">
+            Data engineer and founder, building digital infrastructure
+            that solves African challenges.
+          </p>
+        </div>
+        <div>
+          <h2>Site</h2>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/building.html">Building</a></li>
+            <li><a href="/thinking.html">Thinking</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/uses.html">Uses</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/josephomidiora" rel="me noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com/josephomidiora" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="mailto:joseph@weyz.app">joseph@weyz.app</a></li>
+            <li><a href="/feed.xml">RSS</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Easter egg. Lazy-loaded by js/easter-egg.js once the footer
+           nears the viewport, so it never touches the critical path. -->
+      <pixel-tetris></pixel-tetris>
+
+      <div class="site-footer__base">
+        <p>© 2026 Joseph Omidiora</p>
+        <p><em>
+          And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.
+        </em>
+      </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { SiteNav } from './components/site-nav.js';
+    if (!customElements.get('site-nav')) customElements.define('site-nav', SiteNav);
+  </script>
+  <script type="module" src="js/theme.js"></script>
+  <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/easter-egg.js"></script>
+</body>
+</html>
